@@ -1,0 +1,6 @@
+# Cloudflare Pages `_redirects` — evaluated at the edge, zero Function cost.
+# Next.js redirects() in next.config.mjs stay for local dev + as a fallback.
+
+/ /en 301
+/docs /en/docs 302
+/docs/* /en/docs/:splat 302

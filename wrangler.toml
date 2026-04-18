@@ -1,0 +1,19 @@
+name = "divine-wiki"
+compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare Pages project — the Next.js site itself.
+# Build command and output dir are set in the Pages dashboard to:
+#   Build command:    bun run build
+#   Build output:     .next
+#   Root directory:   /
+#   Environment:      Node 22
+#
+# This file mainly exists so `wrangler deploy` works for the PR-submission
+# Worker under workers/submit-pr/.
+
+[vars]
+NEXT_PUBLIC_BASE_URL = "https://wiki.divineskins.gg"
+NEXT_PUBLIC_DIVINE_API_URL = "https://api.divineskins.gg"
+
+# Worker config lives in workers/submit-pr/wrangler.toml — deployed separately.
