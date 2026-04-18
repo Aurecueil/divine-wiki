@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Quick question or typo
+    url: https://discord.gg/divineskins
+    about: Ask in the #wiki-feedback channel. Faster than an Issue for small stuff.
+  - name: Want to write a guide
+    url: https://wiki.divineskins.gg/contribute
+    about: Use the in-site editor. You don't need to touch Git.
