@@ -1,0 +1,12 @@
+extends: substitution
+message: "Divine voice: use '%s' instead of '%s'. See docs/voice.md."
+level: error
+ignorecase: true
+nonword: false
+swap:
+  "(?<!code |sheet-? ?)\\bskin hacks?\\b": "custom skins"
+  "\\bskin changers?\\b": "custom skins"
+  "\\bunlock skins\\b": "customize, change the look"
+  "\\bundetectable\\b": "safe, client-side"
+  "\\bfree[- ]to[- ]play skins\\b": "custom skins"
+  "\\bexploit(s|ing)?\\b": "mod"

@@ -1,0 +1,17 @@
+extends: substitution
+message: "Plain word wins: '%s' -> '%s'"
+level: warning
+ignorecase: true
+swap:
+  "utilize": "use"
+  "utilizes": "uses"
+  "utilized": "used"
+  "utilizing": "using"
+  "initiate": "start"
+  "navigate to": "go to"
+  "terminate": "close"
+  "subsequently": "then"
+  "in order to": "to"
+  "ensure that": "make sure"
+  "prior to": "before"
+  "execute": "run"

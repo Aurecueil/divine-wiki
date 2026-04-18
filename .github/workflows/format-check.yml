@@ -1,0 +1,43 @@
+name: format-check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths:
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "**/*.js"
+      - "**/*.jsx"
+      - "**/*.mjs"
+      - "**/*.cjs"
+      - "**/*.json"
+      - "**/*.md"
+      - "**/*.mdx"
+      - "**/*.css"
+      - "**/*.yml"
+      - "**/*.yaml"
+      - "package.json"
+      - "bun.lock"
+      - ".prettierrc*"
+      - ".prettierignore"
+
+jobs:
+  prettier:
+    name: prettier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check formatting
+        run: bun run format:check

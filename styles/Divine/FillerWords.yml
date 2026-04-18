@@ -1,0 +1,14 @@
+extends: existence
+message: "Cut filler: '%s'."
+level: warning
+ignorecase: true
+tokens:
+  - "\\bsimply\\b"
+  - "\\bjust\\b"
+  - "\\bbasically\\b"
+  - "\\beasily\\b"
+  - "\\bquickly\\b"
+  - "\\bplease\\b"
+  - "as you can see"
+  - "as mentioned above"
+  - "it'?s important to note that"
