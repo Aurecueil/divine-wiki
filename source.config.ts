@@ -1,5 +1,6 @@
 import { defineConfig, defineDocs, metaSchema } from "fumadocs-mdx/config";
 import { z } from "zod";
+import remarkYouTube from "./src/lib/remark-youtube";
 
 // Declare the frontmatter schema fresh instead of extending Fumadocs'
 // re-exported `frontmatterSchema`. The re-export is bound to an internal
@@ -50,6 +51,8 @@ export default defineConfig({
       external: false,
       onError: "ignore",
     },
+    // Rewrite bare YouTube URLs on their own line into <YouTube /> embeds.
+    remarkPlugins: [remarkYouTube],
     rehypeCodeOptions: {
       langs: ["bash", "json", "python", "javascript", "typescript"],
       themes: {
