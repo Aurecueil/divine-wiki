@@ -42,8 +42,8 @@ export default async function Page(
         sha: branch,
       }}
     >
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription className="mb-0">
+      <DocsTitle className="divine-doc-title">{page.data.title}</DocsTitle>
+      <DocsDescription className="divine-doc-description mb-0">
         {page.data.description}
       </DocsDescription>
 
