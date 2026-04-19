@@ -4,7 +4,8 @@ description: "This guide explains how to fully remodel a League of Legends champ
 category: "maya"
 ---
 
-# ➤ Full Champion Remodel Tutorial  
+## ➤ Full Champion Remodel Tutorial
+
 ### Replacing a Champion with a Custom Model
 
 This guide explains how to fully remodel a League of Legends champion by replacing the default character with a **custom 3D model**, while preserving the **original rig and animations**.
@@ -13,15 +14,15 @@ This guide explains how to fully remodel a League of Legends champion by replaci
 
 ## ➜ Requirements
 
-| Tool | Purpose |
-| --- | --- |
-| **LoL-Maya Plugin** | Required to import/export `.skn` and `.skl` files in Maya |
-| **Autodesk Maya 2023** | Main 3D software for editing the champion model |
-| **GIMP / Photoshop** | Edit and export textures (`.dds`) |
-| **tex2dds** | Convert League `.tex` files to `.dds` and back |
-| **Obsidian** | Extract original League champion files (`.wad.client`) |
-| **RitoBin** | Edit `.bin` files if skin adjustments are needed |
-| **CSLoL Manager** | Load and test the custom skin in-game |
+| Tool                   | Purpose                                                   |
+| ---------------------- | --------------------------------------------------------- |
+| **LoL-Maya Plugin**    | Required to import/export `.skn` and `.skl` files in Maya |
+| **Autodesk Maya 2023** | Main 3D software for editing the champion model           |
+| **GIMP / Photoshop**   | Edit and export textures (`.dds`)                         |
+| **tex2dds**            | Convert League `.tex` files to `.dds` and back            |
+| **Obsidian**           | Extract original League champion files (`.wad.client`)    |
+| **RitoBin**            | Edit `.bin` files if skin adjustments are needed          |
+| **CSLoL Manager**      | Load and test the custom skin in-game                     |
 
 ---
 
@@ -43,7 +44,7 @@ https://youtu.be/xqB84ga55hI?si=dAZXFehz94KL7hre&t=149
 
 > ⚠️ **Important:**  
 > Do **not** delete faces, vertices, edges, or any geometry **after binding** the mesh.
-
+>
 > ⚠️ First-time import:  
 > Import using **File → Import**, **not drag & drop**.  
 > Ensure **separated materials / meshes** are enabled.
@@ -57,7 +58,6 @@ https://youtu.be/xqB84ga55hI?si=dAZXFehz94KL7hre&t=149
    - `.skn` — Mesh (visual geometry)
    - `.skl` — Skeleton (bones & rig data)
 3. Import your custom model (`.fbx`, `.obj`) into the same Maya scene
-
 
 ---
 
@@ -77,10 +77,7 @@ Moving or scaling bones breaks compatibility with League’s original animations
 
 Press this symbol to make bones visible through the mesh!
 
-
-
 <img src="/wiki-images/1768001486509-o4wnhm.png" alt="Image" width={700} />
-
 
 Enable **X-Ray / bone visibility** so bones are visible through the mesh.
 
@@ -96,31 +93,31 @@ Bind the custom mesh to the League skeleton so animations affect the model.
 
 ### Bones You Should Bind
 
-- head  
-- neck  
-- spine  
-- chest  
-- clavicle  
-- shoulder  
-- elbow  
-- hand  
-- fingers  
-- hips  
-- pelvis  
-- knee_lower  
-- foot  
-- root *(only in some cases)*
+- head
+- neck
+- spine
+- chest
+- clavicle
+- shoulder
+- elbow
+- hand
+- fingers
+- hips
+- pelvis
+- knee_lower
+- foot
+- root _(only in some cases)_
 
 > ⚠️ Do **not** bind helper bones such as `buffbones`, `knee_upper`, or `toe`.
 
 ### How to Bind in Maya
 
-1. **CTRL + Select** all required bones  
+1. **CTRL + Select** all required bones
 2. **CTRL + Select** the mesh (last selection)
 3. Go to **Rigging → Skin → Bind Skin → Options**
 4. Set:
-   - ❌ Bind to: *Joint Hierarchy*
-   - ✅ Bind to: *Selected Joints*
+   - ❌ Bind to: _Joint Hierarchy_
+   - ✅ Bind to: _Selected Joints_
 
 > This tutorial covers basic binding only. Advanced weighting requires practice or additional guides.
 
@@ -157,10 +154,11 @@ Before texturing, the UV map must be aligned correctly.
 - Compression: **BC3 / DXT5**
 - Mipmaps: Optional (recommended)
 
-**Resolution Tips**
-- 512×512  
-- 1024×1024  
-- 2048×2048  
+Resolution tips:
+
+- 512×512
+- 1024×1024
+- 2048×2048
 
 Always keep backups and test in-game.
 
@@ -197,7 +195,6 @@ League requires normals to face outward.
 Ahri.skn
 Ahri.skl
 
-
 ---
 
 ### Replacing the Original Files
@@ -207,5 +204,3 @@ Ahri.skl
 3. Keep folder structure unchanged
 
 > 💡 **Pro Tip:** Always back up original files before replacing them.
-
-

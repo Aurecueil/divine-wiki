@@ -4,24 +4,24 @@ description: "This guide explains how to use transformation matrices to scale, m
 category: "vfx-bins"
 ---
 
-#  Introduction to Using Transformation Matrices in League VFX
+# Introduction to Using Transformation Matrices in League VFX
 
 This guide explains how to use transformation matrices to scale, move, and rotate custom particles in League of Legends modding. It is based on a system commonly used in 3D rendering and adapted here for particle manipulation.
 
 ---
 
-##  Required Tools
+## Required Tools
 
-| Tool | Purpose |
-| :--- | :--- |
-| **Ritobin** | To convert `.bin` files to `.py` files for editing |
-| **Visual Studio Code** | To edit code |
+| Tool                   | Purpose                                            |
+| :--------------------- | :------------------------------------------------- |
+| **Ritobin**            | To convert `.bin` files to `.py` files for editing |
+| **Visual Studio Code** | To edit code                                       |
 
 ---
 
-##  Written Guide
+## Written Guide
 
-###  How Matrices Work
+### How Matrices Work
 
 Transformation matrices are a mathematical way to handle:
 
@@ -105,7 +105,7 @@ Transform: mtx44 = {
 }
 ```
 
-*(Moves 250 units up.)*
+(Moves 250 units up.)
 
 #### Moving Sideways (Z-Axis)
 
@@ -120,7 +120,7 @@ Transform: mtx44 = {
 }
 ```
 
-*(Moves 250 units along Z.)*
+(Moves 250 units along Z.)
 
 > 💡 **Tip:** You might need to test and tweak values to get the exact placement you want!
 
@@ -138,4 +138,3 @@ Transform: mtx44 = {
     0, 0, 0, 1
 }
 ```
-

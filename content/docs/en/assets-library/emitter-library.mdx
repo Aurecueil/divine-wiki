@@ -4,17 +4,16 @@ description: "bindWeight controls how much the particle follows the movement of 
 category: "assets-library"
 ---
 
-# Emitter Library 
-
-
+# Emitter Library
 
 ## Bind Weight
 
 **`bindWeight`** controls how much the particle follows the movement of the bone it’s attached to.
 
-* `1` → fully follows the bone
-* `0` → stays in place
-<img src="/wiki-images/1769132679719-x7qanf.png" alt="Image" width={500} />
+- `1` → fully follows the bone
+- `0` → stays in place
+  <img src="/wiki-images/1769132679719-x7qanf.png" alt="Image" width={500} />
+
 ```rust
 bindWeight: embed = ValueFloat {
     constantValue: f32 = 1
@@ -26,6 +25,7 @@ bindWeight: embed = ValueFloat {
 ## Rate
 
 **`rate`** controls how many particles are spawned per second by the emitter.
+
 <img src="/wiki-images/1769132701264-5grdr.png" alt="Image" width={500} />
 
 ### Example: 1 Particle
@@ -48,8 +48,8 @@ rate: embed = ValueFloat {
 
 ## Particle Lifetime
 
-* **`particleLifetime`** defines how long each particle lives after being emitted.
-* **`lifetime`** defines how long the emitter itself lasts before disappearing.
+- **`particleLifetime`** defines how long each particle lives after being emitted.
+- **`lifetime`** defines how long the emitter itself lasts before disappearing.
 
 <img src="/wiki-images/1769132720262-0d010j.png" alt="Image" width={500} />
 
@@ -84,10 +84,7 @@ lifetime: option[f32] = {
 **`particleLinger`** delays the disappearance of particles after the emitter finishes, allowing them to remain visible for a set duration (in seconds).
 
 <img src="/wiki-images/1769132745363-l0cm4s.png" alt="Image" width={500} />
-```rust
-particleLinger: option[f32] = {
-    1
-}
+```rust particleLinger: option[f32] = {1}
 ```
 
 ---
@@ -95,17 +92,18 @@ particleLinger: option[f32] = {
 ## Misc Render Flags
 
 **`miscRenderFlags`** controls special rendering behaviors for the particle.
+
 <img src="/wiki-images/1769132778060-ufd3d4.png" alt="Image" width={500} />
 
 ```rust
 miscRenderFlags: u8 = 1
 ```
+
 <img src="/wiki-images/1769132799839-vw26fb.png" alt="Image" width={500} />
 
 ```rust
 miscRenderFlags: u8 = 0
 ```
-
 
 ---
 
@@ -113,8 +111,8 @@ miscRenderFlags: u8 = 0
 
 **`EmitterPosition`** sets where particles spawn relative to the emitter.
 
-* Higher **Y** → moves up
-* Lower **Y** → moves down
+- Higher **Y** → moves up
+- Lower **Y** → moves down
 
 <img src="/wiki-images/1769132826453-dvots5.png" alt="Image" width={500} />
 
@@ -161,6 +159,7 @@ EmitterPosition: embed = ValueVector3 {
 ## Translation Override
 
 **`translationOverride`** moves the particle system independently of emitter settings and offsets the entire system globally.
+
 <img src="/wiki-images/1769132846178-bcemql.png" alt="Image" width={500} />
 
 ```rust
@@ -191,6 +190,7 @@ timeBeforeFirstEmission: f32 = 1
 **`mEyeCandy`** enables or disables the **Hide Eye Candy** option in video settings.
 
 > Must be placed at the bottom of a particle system.
+
 <img src="/wiki-images/1769132889330-6y5jzd.png" alt="Image" width={500} />
 
 ```rust
@@ -205,8 +205,8 @@ mEyeCandy: bool = true // or false
 
 <img src="/wiki-images/1769132912369-jb8tlr.png" alt="Image" width={500} />
 
-* `Pass = 0` → bottom layer (drawn first)
-* `Pass = 16` → top layer (drawn last, renders above others)
+- `Pass = 0` → bottom layer (drawn first)
+- `Pass = 16` → top layer (drawn last, renders above others)
 
 ```rust
 Pass: i16 = 0
@@ -224,10 +224,10 @@ blendMode: u8 = 1
 
 ### Blend Mode Values
 
-* **1** — No transparency
+- **1** — No transparency
+  - Safe to recolor black or white
 
-  * Safe to recolor black or white
-* **3 / 4 (SCB)** — Standard transparency
+- **3 / 4 (SCB)** — Standard transparency
   ⚠️ Do not recolor too dark or the particle may become invisible in-game
 
 Here’s that snippet converted into **clean Markdown**, matching the style of the rest of the doc:
@@ -259,9 +259,3 @@ useNavmeshMask: flag = false
 ```
 
 > The particle will ignore terrain masking.
-
-
-
-
-
-

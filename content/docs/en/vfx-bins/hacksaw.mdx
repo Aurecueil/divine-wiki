@@ -15,18 +15,16 @@ This tutorial covers how to recolor League of Legends VFX (particles) using **Ha
 [Hacksaw | A tool made by Martynas to edit bins](/docs/tools/Hacksaw)
 [RitoBin | A converter made by Morilli to convert .bin to .py](/docs/tools/Ritobin)
 
-
-
 ---
 
 ## Step 1: Set Up Hacksaw
 
 1. Download and open Hacksaw
-<img src="/wiki-images/1767146058191-p47ap.png" alt="Image" width={500} />
+   <img src="/wiki-images/1767146058191-p47ap.png" alt="Image" width={500} />
 2. Go to the **Settings** tab
-<img src="/wiki-images/1767146063211-rh626f.png" alt="Image" width={400} />
+   <img src="/wiki-images/1767146063211-rh626f.png" alt="Image" width={400} />
 3. Click on **Select Ritobin_Cli**
-<img src="/wiki-images/1767146098137-0kfjp.png" alt="Image" width={500} />
+   <img src="/wiki-images/1767146098137-0kfjp.png" alt="Image" width={500} />
 4. Select `ritobin_cli.exe`
 
 <img src="/wiki-images/1767146109516-brjqcp.png" alt="Image" width={500} />
@@ -40,7 +38,6 @@ This tutorial covers how to recolor League of Legends VFX (particles) using **Ha
 Your particle `.bin` file will usually be located in one of the following folders:
 
 /yourWadFolder/data/ /yourWadFolder/data/characters/YourChamp/skins/SkinXX/
-
 
 `SkinXX` corresponds to your skin's ID.
 
@@ -57,9 +54,9 @@ You can identify your skin number by checking the HUD folder — it typically in
 ## Step 3: Open the BIN File
 
 1. Go to the **Splash** tab in Hacksaw
-<img src="/wiki-images/1767146179052-z4hk9c.png" alt="Image" width={300} />
+   <img src="/wiki-images/1767146179052-z4hk9c.png" alt="Image" width={300} />
 2. Click **Open Bin**
-<img src="/wiki-images/1767146185172-7lewvd.png" alt="Image" width={300} />
+   <img src="/wiki-images/1767146185172-7lewvd.png" alt="Image" width={300} />
 
 <img src="/wiki-images/1767146198483-5k0ae.png" alt="Image" width={500} />
 
@@ -76,13 +73,13 @@ You'll now see a list of particle entries like:
 ## Step 4: Recolor the Particles
 
 1. Pick your new color using the color palette
-<img src="/wiki-images/1767146233766-gxzbj.png" alt="Image" width={500} />
+   <img src="/wiki-images/1767146233766-gxzbj.png" alt="Image" width={500} />
 2. Choose the ParticleSystem you want to be recolored
-<img src="/wiki-images/1767146238999-n11n14.png" alt="Image" width={500} />
+   <img src="/wiki-images/1767146238999-n11n14.png" alt="Image" width={500} />
 3. Press **Recolor Selected** on the bottom of Hacksaw
-<img src="/wiki-images/1767146242759-dx73al.png" alt="Image" width={500} />
+   <img src="/wiki-images/1767146242759-dx73al.png" alt="Image" width={500} />
 4. Save your changes by clicking **Save Bin**
-<img src="/wiki-images/1767146246511-68brzq.png" alt="Image" width={500} />
+   <img src="/wiki-images/1767146246511-68brzq.png" alt="Image" width={500} />
 
 ---
 
@@ -99,6 +96,7 @@ Not all particles are recolored through Hacksaw's built-in color palette. Some V
 5. Replace the original file in your Particles or VFX folder
 
 > 💡 **Common texture paths:**
+>
 > - `Assets/Characters/LeeSin/Skins/Skin31/Particles`
 > - `Assets/Shared/Particles`
 > - `Assets/Characters/LeeSin/Skins/Base/Particles`
@@ -112,6 +110,7 @@ Not all particles are recolored through Hacksaw's built-in color palette. Some V
 Black and white values are often used for **transparency** in League VFX. Recoloring them may break or hide effects completely.
 
 If you intentionally want to recolor black/white:
+
 1. Go to **Settings**
 2. Disable **"Ignore Black/White Values"**
 
@@ -121,11 +120,11 @@ If you intentionally want to recolor black/white:
 
 Each particle uses a BlendMode, shown on the right in Hacksaw:
 
-| BlendMode | Behavior |
-|-----------|----------|
-| 1 | No transparency, feel free to recolor black/white |
-| 3 | SCB transparency |
-| 4 | Standard transparency, don't recolor too black or else it will become invisible in-game |
+| BlendMode | Behavior                                                                                |
+| --------- | --------------------------------------------------------------------------------------- |
+| 1         | No transparency, feel free to recolor black/white                                       |
+| 3         | SCB transparency                                                                        |
+| 4         | Standard transparency, don't recolor too black or else it will become invisible in-game |
 
 <img src="/wiki-images/1767146259378-b1tf5.png" alt="Image" width={500} />
 

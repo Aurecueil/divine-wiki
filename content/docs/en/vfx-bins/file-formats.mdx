@@ -10,13 +10,13 @@ Modding League of Legends involves working with several key file types. Master t
 
 ---
 
-##  Quick Reference
+## Quick Reference
 
-| File | What It Is | Convert With |
-|------|-----------|--------------|
-| `.bin` | Logic & config data | [RitoBin](/docs/tools/Ritobin) |
-| `.dds` | Standard texture format | Direct edit |
-| `.tex` | Riot's texture format | [tex2dds](/docs/tools/tex2dds) |
+| File   | What It Is              | Convert With                   |
+| ------ | ----------------------- | ------------------------------ |
+| `.bin` | Logic & config data     | [RitoBin](/docs/tools/Ritobin) |
+| `.dds` | Standard texture format | Direct edit                    |
+| `.tex` | Riot's texture format   | [tex2dds](/docs/tools/tex2dds) |
 
 ---
 
@@ -29,12 +29,12 @@ Modding League of Legends involves working with several key file types. Master t
 
 `.bin` files store **all the logic** in League — particle systems, skin definitions, animations, sounds, and more.
 
-| Contains | Examples |
-|----------|----------|
-| Particle data | VFX colors, sizes, timing |
-| Skin definitions | Model paths, texture paths |
-| Animation configs | Animation names, blending |
-| Sound configs | Audio triggers, volumes |
+| Contains          | Examples                   |
+| ----------------- | -------------------------- |
+| Particle data     | VFX colors, sizes, timing  |
+| Skin definitions  | Model paths, texture paths |
+| Animation configs | Animation names, blending  |
+| Sound configs     | Audio triggers, volumes    |
 
 ### Workflow
 
@@ -53,11 +53,11 @@ Modding League of Legends involves working with several key file types. Master t
 
 `.dds` (DirectDraw Surface) is the **standard texture format** used for:
 
-| Usage | Examples |
-|-------|----------|
-| Champion models | Skin textures, faces |
-| Particles | VFX sprites, glows |
-| UI/HUD | Icons, ability panels |
+| Usage           | Examples              |
+| --------------- | --------------------- |
+| Champion models | Skin textures, faces  |
+| Particles       | VFX sprites, glows    |
+| UI/HUD          | Icons, ability panels |
 
 ### Editing Tools
 
@@ -67,11 +67,11 @@ Modding League of Legends involves working with several key file types. Master t
 
 ### Export Settings
 
-| Setting | Value |
-|---------|-------|
-| Format | `.dds` |
+| Setting     | Value          |
+| ----------- | -------------- |
+| Format      | `.dds`         |
 | Compression | **BC3 / DXT5** |
-| Mipmaps | ✅ Enabled |
+| Mipmaps     | ✅ Enabled     |
 
 > ⚠️ Wrong compression = broken textures in-game!
 
@@ -82,13 +82,11 @@ Modding League of Legends involves working with several key file types. Master t
 
 `.tex` is Riot's **proprietary texture format** found in `.wad.client` files.
 
-| Status | Info |
-|--------|------|
+| Status                  | Info                   |
+| ----------------------- | ---------------------- |
 | ❌ Cannot edit directly | It's a compiled format |
-| ✅ Must convert first | Use tex2dds |
-| ✅ Convert back after | Before reimporting |
-
-
+| ✅ Must convert first   | Use tex2dds            |
+| ✅ Convert back after   | Before reimporting     |
 
 [tex2dds | Convert .tex ↔ .dds files](/docs/tools/tex2dds)
 
@@ -97,22 +95,21 @@ Modding League of Legends involves working with several key file types. Master t
 </Tab>
 </Tabs>
 
+---
+
+## Complete Workflow Chart
+
+| Task                 | File   | Tool              | Output          |
+| -------------------- | ------ | ----------------- | --------------- |
+| Edit VFX/particles   | `.bin` | RitoBin → VS Code | `.bin`          |
+| Edit champion skin   | `.dds` | Photoshop/GIMP    | `.dds`          |
+| Extract game texture | `.tex` | tex2dds           | `.dds`          |
+| Reimport texture     | `.dds` | tex2dds           | `.tex`          |
+| Browse game files    | `.wad` | Obsidian          | Extracted files |
 
 ---
 
-##  Complete Workflow Chart
-
-| Task | File | Tool | Output |
-|------|------|------|--------|
-| Edit VFX/particles | `.bin` | RitoBin → VS Code | `.bin` |
-| Edit champion skin | `.dds` | Photoshop/GIMP | `.dds` |
-| Extract game texture | `.tex` | tex2dds | `.dds` |
-| Reimport texture | `.dds` | tex2dds | `.tex` |
-| Browse game files | `.wad` | Obsidian | Extracted files |
-
----
-
-##  Essential Tools
+## Essential Tools
 
 [RitoBin | Convert .bin ↔ .py for editing](/docs/tools/Ritobin)
 [tex2dds | Convert .tex ↔ .dds for textures](/docs/tools/tex2dds)

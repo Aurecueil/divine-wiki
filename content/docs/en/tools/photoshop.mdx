@@ -20,11 +20,11 @@ https://github.com/RitoShark/Photoshop-Tex-Plugin/releases
 
 There are three popular plugins for working with DDS files in Photoshop:
 
-| Plugin | Best For | GPU Required |
-|--------|----------|--------------|
-| Intel Texture Works | General use, works on all systems | No |
+| Plugin               | Best For                           | GPU Required |
+| -------------------- | ---------------------------------- | ------------ |
+| Intel Texture Works  | General use, works on all systems  | No           |
 | NVIDIA Texture Tools | NVIDIA GPU users, advanced options | Yes (NVIDIA) |
-| Simple DDS Plugin | Quick batch exports, minimal UI | No |
+| Simple DDS Plugin    | Quick batch exports, minimal UI    | No           |
 
 ---
 
@@ -46,18 +46,21 @@ A versatile DDS plugin that works regardless of your graphics card manufacturer.
    - **64-bit:** `IntelTextureWorks_1.0.4/Plugins/x64/IntelTextureWorks.8bi`
    - **32-bit:** `IntelTextureWorks_1.0.4/Plugins/Win32/IntelTextureWorks.8bi`
 4. Copy the `.8bi` file to your Photoshop plugins folder:
-   ```
+
+   ```text
    C:\Program Files\Adobe\Adobe Photoshop [VERSION]\Required\Plug-Ins\File Formats
    ```
+
 5. (Optional) For cubemap support, copy the scripts from `PhotoshopScripts/` to:
-   ```
+
+   ```text
    C:\Program Files\Adobe Photoshop [VERSION]\Presets\Scripts
    ```
 
 ### Exporting DDS Files
 
 1. Go to **File > Save As**
-2. Select **Intel Texture Works (*.DDS)** as the file type
+2. Select **Intel Texture Works (\*.DDS)** as the file type
 3. Choose your save location and filename
 4. In the plugin dialog, configure:
    - **Texture Type:** Color + Alpha
@@ -90,7 +93,7 @@ An advanced DDS plugin optimized for NVIDIA graphics cards.
 ### Exporting DDS Files
 
 1. Go to **File > Save As** (or `Ctrl+Shift+S`)
-2. Select **DDS - NVIDIA Texture Tools Exporter (*.DDS)**
+2. Select **DDS - NVIDIA Texture Tools Exporter (\*.DDS)**
 3. Configure the export settings:
    - **Format:** BC3 RGBA 8bpp | DXT5 (interpolated alpha)
    - **Compression Quality:** Highest
@@ -99,10 +102,12 @@ An advanced DDS plugin optimized for NVIDIA graphics cards.
 
 > **Tip:** Always check your specific guide for recommended export settings, as some textures may require different compression formats.
 
-### Exporting DDS Files
+## Simple DDS Plugin
+
+### Exporting DDS Files with Simple DDS
 
 1. Go to **File > Save As**
-2. Select **DDS (*.DDS)** as the file type
+2. Select **DDS (\*.DDS)** as the file type
 3. Choose your save location and filename
 4. In the dialog, set **Format** to **DXT5**
 5. Click **OK**
@@ -115,12 +120,9 @@ An advanced DDS plugin optimized for NVIDIA graphics cards.
 
 For most League of Legends textures, use these settings:
 
-| Setting | Value |
-|---------|-------|
-| Format | BC3 / DXT5 |
-| Alpha | Interpolated |
-| Mip Maps | None (unless specified) |
-| Compression | Highest quality |
-
-
-
+| Setting     | Value                   |
+| ----------- | ----------------------- |
+| Format      | BC3 / DXT5              |
+| Alpha       | Interpolated            |
+| Mip Maps    | None (unless specified) |
+| Compression | Highest quality         |

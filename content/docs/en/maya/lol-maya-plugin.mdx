@@ -13,7 +13,11 @@ To start working with League models in Maya, you'll need the **LoL-Maya plugin**
 [LoL-Maya Plugin | Download the latest release by Tarngaina](https://github.com/tarngaina/lol_maya/releases)
 [LtMAO | Compatibility tool for newer Maya versions](https://github.com/tarngaina/LtMAO)
 
-<img src="/wiki-images/1767019072359-dfx5or.png" alt="LoL-Maya Plugin Interface" width={800} />
+<img
+  src="/wiki-images/1767019072359-dfx5or.png"
+  alt="LoL-Maya Plugin Interface"
+  width={800}
+/>
 
 ---
 
@@ -31,13 +35,13 @@ Make sure you are using the most recent release.
 
 Place the following folders into:
 
-```
+```text
 Documents\maya\2023\
 ```
 
-* `plug-ins`
-* `prefs`
-* `scripts`
+- `plug-ins`
+- `prefs`
+- `scripts`
 
 ---
 
@@ -48,15 +52,14 @@ Documents\maya\2023\
    **Windows → Settings/Preferences → Plug-in Manager**
 3. Locate **lol_maya** in the list
 4. Enable both:
+   - **Loaded**
+   - **Auto Load**
 
-   * **Loaded**
-   * **Auto Load**
 5. Click **Close**, then restart Maya
 
 If successful, you will see **LoLMaya** and **LoLMaya_MAPGEO** tabs in Maya’s main toolbar.
 
 ---
-
 
 ### Troubleshooting
 
@@ -66,10 +69,12 @@ If successful, you will see **LoLMaya** and **LoLMaya_MAPGEO** tabs in Maya’s 
 ### Plugin not appearing in Plug-in Manager
 
 **Causes:**
+
 - Files not in correct folder
 - Wrong Maya version folder
 
 **Fix:**
+
 1. Verify files are in `Documents\maya\[YOUR_VERSION]\`
 2. Ensure all three folders (`plug-ins`, `prefs`, `scripts`) are present
 3. Restart Maya completely
@@ -80,10 +85,12 @@ If successful, you will see **LoLMaya** and **LoLMaya_MAPGEO** tabs in Maya’s 
 ### Tabs not appearing after loading
 
 **Causes:**
+
 - Plugin loaded but UI not refreshed
 - Maya needs restart
 
 **Fix:**
+
 1. Close Maya completely
 2. Reopen Maya
 3. Check Plug-in Manager again
@@ -102,7 +109,6 @@ For **Maya 2024+**, the standard plugin may have compatibility issues.
 
 </Tab>
 </Tabs>
-
 
 ---
 
