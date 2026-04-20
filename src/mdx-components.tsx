@@ -7,6 +7,7 @@ import { YouTube } from "@/components/mdx/YouTube";
 import { PremiumCard } from "@/components/mdx/PremiumCard";
 import { GlowCTA } from "@/components/mdx/GlowCTA";
 import { LevelPill } from "@/components/mdx/LevelPill";
+import { ToolCard } from "@/components/mdx/ToolCard";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -20,6 +21,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     PremiumCard,
     GlowCTA,
     LevelPill,
+    ToolCard,
     img: ImageZoom,
   };
 }
