@@ -138,6 +138,27 @@
   --sidebar-accent-foreground: #e4e4e7;
   --sidebar-border: #363242;
   --sidebar-ring: #c084fc;
+
+  /* Fumadocs tokens — override neutral grayscale with Divine brand so
+     EVERY Fumadocs surface (sidebar, search dialog, TOC, popovers,
+     callouts, cards, tabs, code blocks) inherits the purple/gold palette. */
+  --color-fd-background: #0b0a0f;
+  --color-fd-foreground: #e4e4e7;
+  --color-fd-card: #15141c;
+  --color-fd-card-foreground: #e4e4e7;
+  --color-fd-popover: #111016;
+  --color-fd-popover-foreground: #e4e4e7;
+  --color-fd-primary: #c084fc;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-secondary: #15141c;
+  --color-fd-secondary-foreground: #e4e4e7;
+  --color-fd-muted: #141320;
+  --color-fd-muted-foreground: #9b9da8;
+  --color-fd-accent: color-mix(in srgb, #783cb5 22%, transparent);
+  --color-fd-accent-foreground: #e4e4e7;
+  --color-fd-border: color-mix(in srgb, #783cb5 22%, transparent);
+  --color-fd-ring: #c084fc;
+  --color-fd-overlay: color-mix(in srgb, #0b0a0f 82%, transparent);
 }
 
 @layer base {
@@ -247,33 +268,7 @@
     max-width: 60ch;
   }
 
-  /* Glass article panel — backdrop blur + surface tint + soft purple
-   ambient glow. The prose body becomes a floating, premium card.
-   Scoped to `div.prose` to avoid hitting TOC links and other
-   elements Fumadocs gives the bare `prose` className to. */
-  div.prose {
-    position: relative;
-    background: color-mix(in srgb, #15141c 55%, transparent);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    border: 1px solid color-mix(in srgb, #363242 65%, transparent);
-    border-radius: 14px;
-    padding: 2.25rem 2.5rem !important;
-    margin-top: 1.5rem;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.03) inset,
-      0 24px 60px -20px rgba(120, 60, 181, 0.18);
-  }
-
-  @media (max-width: 768px) {
-    div.prose {
-      padding: 1.5rem 1.25rem !important;
-      border-radius: 10px;
-    }
-  }
-
-  /* Headings inside prose — Manrope/Poppins, with H2 carrying a tiny
-   gradient bar like Divine Academy did, and H3 in light purple. */
+  /* Headings inside prose — Manrope/Poppins, H3 in light purple. */
   .prose h2 {
     font-family: var(--font-manrope), system-ui, sans-serif !important;
     font-weight: 700 !important;
@@ -282,19 +277,6 @@
     letter-spacing: -0.015em !important;
     color: var(--color-divine-text) !important;
     margin-top: 2.5rem !important;
-    padding-bottom: 0.5rem;
-    position: relative;
-  }
-  .prose h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 56px;
-    height: 2px;
-    background: linear-gradient(90deg, #ecb96a 0%, #783cb5 100%);
-    border-radius: 2px;
-    opacity: 0.85;
   }
 
   .prose h3 {
@@ -460,6 +442,86 @@
     background: color-mix(in srgb, var(--color-divine-primary) 6%, transparent);
   }
 
+  /* FAQ details — clean collapsible row with chevron. No box, no gradient. */
+  .prose details {
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-divine-border) 60%, transparent);
+  }
+  .prose details:first-of-type {
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-divine-border) 60%, transparent);
+  }
+  .prose details > summary {
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: var(--color-divine-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0.25rem;
+    transition: color 0.15s;
+  }
+  .prose details > summary::-webkit-details-marker {
+    display: none;
+  }
+  .prose details > summary:hover {
+    color: var(--color-divine-primary-light);
+  }
+  .prose details > summary::after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid var(--color-divine-text-muted);
+    border-bottom: 2px solid var(--color-divine-text-muted);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition:
+      transform 0.25s ease,
+      border-color 0.2s;
+    flex-shrink: 0;
+  }
+  .prose details[open] > summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+    border-color: var(--color-divine-primary-light);
+  }
+  .prose details[open] > summary {
+    color: var(--color-divine-primary-light);
+  }
+  .prose details > *:not(summary) {
+    padding: 0 0.25rem;
+    color: color-mix(in srgb, var(--color-divine-text) 88%, transparent);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  .prose details > *:not(summary):first-of-type {
+    margin-top: 0 !important;
+  }
+  .prose details > *:not(summary):last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 1rem;
+  }
+  .prose details p {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .prose details ul,
+  .prose details ol {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    padding-left: 1.25rem !important;
+  }
+  .prose details li {
+    margin-top: 0.15rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+  .prose details li > p {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   /* Horizontal rule — gold→purple gradient. */
   .prose hr {
     height: 1px;
@@ -475,5 +537,222 @@
     border-radius: 10px;
     border: 1px solid var(--color-divine-border);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     Divine Skins sidebar — overrides Fumadocs' neutral grayscale
+     with the purple/gold brand palette. Inspired by Divine Academy:
+     tighter rows, purple-light active state, gold→purple active bar,
+     radial purple ambient so the lower half never feels empty.
+     ────────────────────────────────────────────────────────────── */
+
+  .dark #nd-sidebar {
+    --color-fd-card: #0a0910;
+    --color-fd-background: #0a0910;
+    --color-fd-foreground: var(--color-divine-text);
+    --color-fd-muted: #15141c;
+    --color-fd-muted-foreground: #9b9da8;
+    --color-fd-border: color-mix(
+      in srgb,
+      var(--color-divine-primary) 22%,
+      transparent
+    );
+    --color-fd-primary: var(--color-divine-primary-light);
+    --color-fd-primary-foreground: #ffffff;
+    --color-fd-accent: color-mix(
+      in srgb,
+      var(--color-divine-primary) 14%,
+      transparent
+    );
+    --color-fd-accent-foreground: var(--color-divine-text);
+    --color-fd-secondary: #15141c;
+    --color-fd-secondary-foreground: var(--color-divine-text);
+    --color-fd-ring: var(--color-divine-primary-light);
+
+    background:
+      radial-gradient(
+        120% 60% at 0% 0%,
+        color-mix(in srgb, var(--color-divine-primary) 14%, transparent) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        90% 50% at 20% 110%,
+        color-mix(in srgb, var(--color-divine-primary) 10%, transparent) 0%,
+        transparent 65%
+      ),
+      #0a0910;
+    border-inline-end-color: color-mix(
+      in srgb,
+      var(--color-divine-primary) 20%,
+      transparent
+    ) !important;
+  }
+
+  /* Header block — logo + collapse button, a thin brand separator. */
+  .dark #nd-sidebar > div:first-child {
+    gap: 0.6rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-divine-primary) 18%, transparent);
+    margin-bottom: 0.25rem;
+  }
+
+  /* Search trigger — purple-tinted pill that matches the brand. */
+  .dark #nd-sidebar button[aria-label="Search"],
+  .dark #nd-sidebar [data-search-full] {
+    background: color-mix(
+      in srgb,
+      var(--color-divine-primary) 6%,
+      #141320 85%
+    ) !important;
+    border: 1px solid
+      color-mix(in srgb, var(--color-divine-primary) 22%, transparent) !important;
+    color: var(--color-divine-text-muted);
+  }
+  .dark #nd-sidebar button[aria-label="Search"]:hover,
+  .dark #nd-sidebar [data-search-full]:hover {
+    border-color: color-mix(
+      in srgb,
+      var(--color-divine-primary) 40%,
+      transparent
+    ) !important;
+  }
+
+  /* Nav items — tighter rows, consistent line-height. */
+  .dark #nd-sidebar a[data-active],
+  .dark #nd-sidebar button[data-active] {
+    padding-block: 0.3rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    border-radius: 8px;
+  }
+
+  /* Hover — subtle purple wash instead of gray. */
+  .dark #nd-sidebar a[data-active="false"]:hover,
+  .dark #nd-sidebar button[data-active="false"]:hover {
+    background: color-mix(
+      in srgb,
+      var(--color-divine-primary) 9%,
+      transparent
+    ) !important;
+    color: var(--color-divine-text) !important;
+  }
+
+  /* Active — purple-light text on purple wash, bold. */
+  .dark #nd-sidebar a[data-active="true"],
+  .dark #nd-sidebar button[data-active="true"] {
+    color: var(--color-divine-primary-light) !important;
+    background: color-mix(
+      in srgb,
+      var(--color-divine-primary) 16%,
+      transparent
+    ) !important;
+    font-weight: 600;
+  }
+  .dark #nd-sidebar a[data-active="true"] svg,
+  .dark #nd-sidebar button[data-active="true"] svg {
+    color: var(--color-divine-primary-light) !important;
+  }
+
+  /* Active bar — gold→purple gradient rail on nested items. */
+  .dark #nd-sidebar a[data-active="true"]::before {
+    background: linear-gradient(180deg, #ecb96a 0%, #c084fc 100%) !important;
+    width: 2px !important;
+    border-radius: 2px;
+    inset-block: 0.4rem !important;
+  }
+
+  /* Folder tree guide line — softer, purple-tinted. */
+  .dark #nd-sidebar [class*="before:bg-fd-border"]::before {
+    background: color-mix(
+      in srgb,
+      var(--color-divine-primary) 22%,
+      transparent
+    ) !important;
+  }
+
+  /* Sidebar footer (language + GitHub + theme toggle) — pinned,
+     with a brand divider and muted foreground that matches the site. */
+  .dark #nd-sidebar > div:last-child {
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-divine-primary) 18%, transparent);
+    margin-top: auto;
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     Search / command dialog — the Radix dialog renders in a portal
+     so the #nd-sidebar scope doesn't reach it. Lift the surface off
+     the body, add a purple hairline, purple glow, stronger backdrop.
+     ────────────────────────────────────────────────────────────── */
+
+  /* Backdrop overlay — darker + stronger blur + faint purple wash. */
+  .dark [data-state="open"][data-slot="overlay"],
+  .dark [data-radix-popper-content-wrapper] + div[data-state="open"] {
+    background: radial-gradient(
+      120% 80% at 50% 30%,
+      color-mix(in srgb, var(--color-divine-primary) 12%, transparent) 0%,
+      color-mix(in srgb, #0b0a0f 88%, transparent) 55%
+    );
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  /* The Fumadocs search dialog content — brighter than body, purple
+     rim, soft purple ambient shadow. `[role="dialog"]` catches the
+     search modal; we narrow further with the `cmdk`-style structure. */
+  .dark [role="dialog"][data-state="open"]:has(input[placeholder]),
+  .dark [role="dialog"][data-state="open"][aria-labelledby*="radix"] {
+    background: linear-gradient(
+      180deg,
+      #1a1624 0%,
+      #15121f 100%
+    ) !important;
+    border: 1px solid
+      color-mix(in srgb, var(--color-divine-primary) 35%, transparent) !important;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 24px 60px -12px rgba(0, 0, 0, 0.6),
+      0 0 60px -10px rgba(120, 60, 181, 0.35) !important;
+  }
+
+  /* Search input placeholder + caret — muted divine, purple caret. */
+  .dark [role="dialog"] input[placeholder] {
+    caret-color: var(--color-divine-primary-light);
+  }
+
+  /* ESC pill — align with Divine surface + border. */
+  .dark [role="dialog"] button[type="button"]:has(> *:only-child) {
+    border-color: color-mix(
+      in srgb,
+      var(--color-divine-primary) 25%,
+      transparent
+    );
+  }
+
+  /* Search result rows — hover/active uses purple wash, highlighted
+     match text uses purple-light (already via --color-fd-primary). */
+  .dark [role="dialog"] button[aria-selected="true"] {
+    background: color-mix(
+      in srgb,
+      var(--color-divine-primary) 18%,
+      transparent
+    ) !important;
+    color: var(--color-divine-text) !important;
+  }
+
+  /* Footer strip inside search dialog (keyboard hints, tags). */
+  .dark [role="dialog"] [class*="bg-fd-secondary"] {
+    background: color-mix(
+      in srgb,
+      var(--color-divine-primary) 8%,
+      #15141c 90%
+    ) !important;
+    border-top: 1px solid
+      color-mix(in srgb, var(--color-divine-primary) 18%, transparent);
+  }
+
+  /* Any ring/outline inside dialogs uses purple-light. */
+  .dark [role="dialog"] :focus-visible {
+    outline-color: var(--color-divine-primary-light);
   }
 } /* end @layer components */

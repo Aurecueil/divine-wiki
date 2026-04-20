@@ -2,7 +2,6 @@
   "title": "{meta.tools.title}",
   "icon": "Wrench",
   "pages": [
-    "index",
     "flint",
     "jade",
     "aventurine",

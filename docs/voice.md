@@ -94,6 +94,20 @@ Cut these words wherever you find them:
 
 If a step is simple, the reader will notice. You don't need to tell them.
 
+### No em dashes
+
+Never use em dashes (`—`) or en dashes (`–`) in prose. They look fancy but slow readers down, especially non-native English speakers.
+
+Rewrite with a period, comma, colon, or parentheses instead.
+
+| Don't write | Write |
+|-------------|-------|
+| *It's safe — outside Korea.* | *It's safe outside Korea.* |
+| *Open Flint — the all-in-one tool.* | *Open Flint, the all-in-one tool.* |
+| *Three things to check — files, paths, names.* | *Three things to check: files, paths, names.* |
+
+Regular hyphens (`-`) in compound words (`client-side`, `step-by-step`) are fine.
+
 ## Safety wording
 
 Safety comes up in almost every guide. Say it the same way every time.

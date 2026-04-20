@@ -1,176 +1,123 @@
 ---
-title: "Start here!"
-description: "> Creating custom League skins is a journey. This guide walks you from beginner to advanced modding."
+title: "Introduction to custom skins"
+description: "New to custom skins? Start here. Answers to the most common questions about making and publishing your first skin."
 category: "guided-walkthrough"
 ---
 
-# Divine Skins – Guided Walkthrough
+Want to make a custom skin for League of Legends? Good news. It's not as hard as it looks.
 
-> Creating custom League skins is a journey. This guide walks you from beginner to advanced modding.
+Watch the 90-second overview, then pick a question below.
 
-## Getting Started
+https://www.youtube.com/watch?v=7JMbzqsJxzE
 
-### Required Tools & Downloads
+<Callout type="info" title="Custom skins are safe outside Korea and China">
+Custom skins are safe on every region except **Korea** and **China**. No bans
+since 2014 when you use trusted tools. Never use custom skins on Korean or
+Chinese servers. The anti-cheat there blocks all mods and bans accounts.
+</Callout>
 
-- Assets Library
-- Tools
-- **LtMAO**
+## Frequently asked questions
 
----
+<details>
+<summary>Is making a custom skin hard?</summary>
 
-## Step-by-Step Walkthrough
+Not really. The hardest part is getting used to the tools: Maya, Photoshop, Visual Studio Code, and our custom skin tools.
 
----
+Once you've opened them a few times, it gets easier.
 
-### Part 1 — Obsidian
+</details>
 
-Learn how to explore League’s internal game files using **Obsidian**, understand the basics of modding, and prepare your project folders.
+<details>
+<summary>What tools do I need?</summary>
 
-Includes:
+You'll work with a mix of 3D, image, and code tools:
 
-- File exploration
-- Modding fundamentals
-- Project setup
+- **Maya** or **Blender** for 3D models and rigging.
+- **Photoshop** (or GIMP) for textures.
+- **Visual Studio Code** for editing particle and bin files.
+- **Our custom skin tools**: Flint, Jade, and LtMAO.
 
-https://www.youtube.com/watch?v=lUq29txlCCE
+See the [Tools page](/docs/tools) for the full list and install links.
 
----
+</details>
 
-### Part 2 — Hacksaw
+<details>
+<summary>How long does it take to learn?</summary>
 
-Recolor existing visual effects using a visual palette system.  
-No coding required.
+It depends on your experience and how fast you pick things up.
 
-https://www.youtube.com/watch?v=ZswaStGq7VU&t=1s
+- If you already know Photoshop, you've got a head start.
+- If you learn slower, that's fine. Take your time.
 
----
+With a little practice each day, you can build a decent skin in about **two weeks**.
 
-### Part 3 — Replacing a Model (Maya or Blender)
+</details>
 
-Learn how to fully replace a champion model using **Autodesk Maya** and the **LoL Maya Plugin**. **Blender** model swap tutorial can be found here: https://wiki.divineskins.gg/docs/blender/3d-model-swap
+<details>
+<summary>Where do I start?</summary>
 
-#### Important Notes
+Three steps:
 
-- **Install LoL Maya first**
-- Do **not** delete faces, vertices, or edges after binding the mesh
-- On first import of `.skn` / `.skl` files, use **Import**, not drag-and-drop
-- Ensure **separated materials and meshes** are enabled
+1. Install the tools from the [Tools page](/docs/tools).
+2. Open the [Full walkthrough](/docs/guided-walkthrough/walkthrough) and work through it from start to finish.
+3. By the end, you'll have a simple skin ready to test.
 
-https://www.youtube.com/watch?v=xqB84ga55hI&list=PLf4Ypj4RQ79J5KsyLb6xJcjKVPjlgvB23&index=3&ab_channel=Frog
+Stuck on setup? Jump into our [Discord](https://discord.gg/divineskins) and ask in **#modding-help**.
 
-See the [Maya Error List](/docs/errors/maya-errors).
+</details>
 
----
+<details>
+<summary>What should I learn after my first skin?</summary>
 
-### Part 4 — Maya Materials, Submeshes, and Bin
+Dig into the rest of the wiki for bigger techniques like better meshes, textures, visual effects, and sound effects:
 
-Understand how materials work in Maya and how to reference them inside `.bin` files using `MaterialOverride`.
+- [Maya](/docs/maya) for rigging and meshes.
+- [Blender](/docs/blender) for the free 3D alternative.
+- [VFX & bins](/docs/vfx-bins) for particles and visual effects.
+- [Animations](/docs/animations) for idle loops and custom recalls.
 
-https://www.youtube.com/watch?v=dS-lvovFmVw&list=PLf4Ypj4RQ79J5KsyLb6xJcjKVPjlgvB23&index=4&ab_channel=Frog
+</details>
 
----
+<details>
+<summary>How do I publish my skin?</summary>
 
-### Part 5 — Matrix and Idle Particles
+When your skin is ready to share:
 
-Scale, rotate, and move visual effects using transformation matrices.  
-Add idle auras or passive visual effects.
+1. Go to [divineskins.gg](https://divineskins.gg).
+2. Log in.
+3. Click **Artist Panel**.
+4. Click **Create Mod**.
+5. Fill in the form and upload your files.
+6. Submit for review.
 
-Includes:
+Our moderation team reviews every submission. Once it's approved, your skin goes live on the site.
 
-- How to place a VFX system (important)
-- Code used in this tutorial
+</details>
 
-https://www.youtube.com/watch?v=bUJSVlVHEZM&list=PLf4Ypj4RQ79J5KsyLb6xJcjKVPjlgvB23&index=5&ab_channel=Frog
+<details>
+<summary>What is repathing, and do I really need it?</summary>
 
----
+Repathing prevents skins from breaking each other, and it optimizes mods and load times.
 
-### Part 6 — Particle Systems and Triggered VFX
+It's also **required to upload to divineskins.gg**. Submissions without repathing won't pass review.
 
-Trigger visual effects using:
+The repath step is covered in the [Full walkthrough](/docs/guided-walkthrough/walkthrough). Watch that part carefully before you upload.
 
-- Animation events
-- Game logic (`PersistentEffectConditions`)
+</details>
 
-https://www.youtube.com/watch?v=T7ALG5M4twQ&list=PLf4Ypj4RQ79J5KsyLb6xJcjKVPjlgvB23&index=6&ab_channel=Frog
-Code used in this tutorial
+<details>
+<summary>How do I get the skin creator role?</summary>
 
----
+Once your first skin is approved, request the **skin creator** role in our [Discord](https://discord.gg/divineskins). Welcome to the family, and good luck on your first custom skin.
 
-### Part 7 — Voiceover and Sound Effects (Outdated)
+</details>
 
-Replace voiceovers and sound effects such as spell sounds or taunts.
+<details>
+<summary>Where do I get help?</summary>
 
-> **Note:** This tutorial is outdated.  
-> You can now use **LtMAO from GitHub** to convert `.wem` files to `.wav` and back.
+Our [Discord](https://discord.gg/divineskins) is the fastest way.
 
-https://youtu.be/QlJRc4hQNA0?si=w0E0iB6Grcl2n8Ga
-Download LtMAO
+- **#modding-help** for tool setup and step-by-step questions.
+- Ask a question any time. The community answers most posts within a few hours.
 
-https://github.com/tarngaina/LtMAO
-
----
-
-### Part 8 — Retargeting Animations
-
-Transfer animations from other games or champions (for example, Fortnite) to League rigs.
-
-#### Tool
-
-| Tool                  | Description                                 |
-| --------------------- | ------------------------------------------- |
-| Fortnite Porting Tool | Ports Fortnite animations for use in League |
-
-https://www.youtube.com/watch?v=jnAXvFzYlb4&list=PLf4Ypj4RQ79J5KsyLb6xJcjKVPjlgvB23&index=8&ab_channel=Frog
-
----
-
-### Part 9 — League Materials (Glow and Toon Shader)
-
-Apply League-style materials such as **Glow** and **Toon Shader** to your custom skins.
-
-https://www.youtube.com/watch?v=mJDehGDIL00&ab_channel=Frog
-Material Collection
-
----
-
-### Part 10 — Repathing and Publishing
-
-Repath your mod files correctly and publish your skin on the website.
-
-https://youtu.be/WxdHs9oauP4
-
----
-
-## Extras
-
-### Adding Bones and Physics (Hair, Tails, Capes)
-
-Learn how to add bones and physics-based motion to League skins.
-
-#### Tools Required
-
-| Tool          | Description                                                 |
-| ------------- | ----------------------------------------------------------- |
-| Autodesk Maya | Industry-standard 3D software for rigging and UV mapping    |
-| RitoBin       | Converts `.bin` files to `.py` and back using `ritobin_cli` |
-
-https://www.youtube.com/watch?v=ejg5IAkEDTY&list=PLf4Ypj4RQ79J5KsyLb6xJcjKVPjlgvB23&index=9&ab_channel=Frog
-
----
-
-### Example Configuration
-
-```cpp
-rigPoseModifierData: list[pointer] = {
-    ConformToPathRigPoseModifierData {
-        mStartingJointName: hash = 0x41f70632
-        mEndingJointName: hash = 0x3cf6fe53
-        mDefaultMaskName: hash = 0x7136e1bc
-        mMaxBoneAngle: f32 = 45
-        mDampingValue: f32 = 5
-        mFrequency: f32 = 3
-    }
-}
-
-
-```
+</details>
