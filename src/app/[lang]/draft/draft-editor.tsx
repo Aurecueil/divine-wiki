@@ -417,9 +417,6 @@ export function DraftEditor({
       <div className="shrink-0 border-b border-white/[0.06] px-4 pt-4 pb-3 sm:px-6">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-start">
           <div className="min-w-0 flex-1">
-            <span className="text-divine-text-muted block text-[10px] font-semibold tracking-[0.1em] uppercase">
-              {d.fieldTitle}
-            </span>
             <input
               aria-label={d.fieldTitle}
               className="text-divine-text placeholder:text-divine-text-muted/55 w-full bg-transparent font-[family-name:var(--font-hero)] text-3xl font-bold tracking-tight outline-none sm:text-4xl"
@@ -427,12 +424,10 @@ export function DraftEditor({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <div className="mt-2 flex items-center gap-3">
-              <span className="text-divine-text-muted shrink-0 text-[10px] font-semibold tracking-[0.1em] uppercase">
-                {d.fieldDescription}
-              </span>
+            <div className="mt-2 flex max-w-2xl items-center gap-3">
               <input
                 aria-label={d.fieldDescription}
+                maxLength={160}
                 className="text-divine-text-muted placeholder:text-divine-text-muted/40 w-full min-w-0 flex-1 bg-transparent text-sm outline-none"
                 placeholder={d.fieldDescriptionPlaceholder}
                 value={description}
@@ -441,7 +436,7 @@ export function DraftEditor({
               <span
                 className={cn(
                   "shrink-0 font-mono text-[11px] tabular-nums",
-                  description.length > 160
+                  description.length >= 160
                     ? "text-divine-warning"
                     : "text-divine-text-muted/60",
                 )}
@@ -451,14 +446,14 @@ export function DraftEditor({
             </div>
           </div>
 
-          <div className="flex shrink-0 flex-wrap items-stretch gap-2">
-            <label className="bg-divine-surface/60 focus-within:border-divine-primary/50 rounded-divine-lg relative flex flex-col gap-0.5 border border-white/10 px-3 py-1.5 transition-colors">
-              <span className="text-divine-text-muted text-[10px] font-semibold tracking-[0.1em] uppercase">
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
+            <label className="hover:border-divine-primary/40 focus-within:border-divine-primary/50 flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 transition-colors">
+              <span className="text-divine-text-muted text-xs">
                 {d.fieldCategory}
               </span>
-              <span className="relative">
+              <span className="relative flex items-center">
                 <select
-                  className="text-divine-text appearance-none bg-transparent pr-6 text-sm outline-none disabled:opacity-60"
+                  className="text-divine-text appearance-none bg-transparent pr-5 text-sm font-medium outline-none disabled:opacity-60"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   disabled={mode === "edit"}
@@ -469,12 +464,12 @@ export function DraftEditor({
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="text-divine-text-muted pointer-events-none absolute top-1/2 right-0 size-3.5 -translate-y-1/2" />
+                <ChevronDown className="text-divine-text-muted pointer-events-none absolute right-0 size-3.5" />
               </span>
             </label>
 
-            <label className="bg-divine-surface/60 focus-within:border-divine-primary/50 rounded-divine-lg flex flex-col gap-0.5 border border-white/10 px-3 py-1.5 transition-colors">
-              <span className="text-divine-text-muted text-[10px] font-semibold tracking-[0.1em] uppercase">
+            <label className="hover:border-divine-primary/40 focus-within:border-divine-primary/50 flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 transition-colors">
+              <span className="text-divine-text-muted text-xs">
                 {d.fieldSlug}
               </span>
               <span className="flex items-baseline">
