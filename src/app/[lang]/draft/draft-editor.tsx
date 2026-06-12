@@ -28,7 +28,7 @@ import { PreviewPane, type PreviewStatus } from "./preview-pane";
 import { Toolbar } from "./toolbar";
 import { Handoff } from "./handoff";
 import matter from "gray-matter";
-import { rawSourceUrl, editFileUrl, newFileUrl } from "@/lib/draft/github";
+import { rawSourceUrl, editFileUrl } from "@/lib/draft/github";
 import {
   draftKey,
   loadDraft,
@@ -84,7 +84,7 @@ export function DraftEditor({
   const [slug, setSlug] = useState("");
   const [body, setBody] = useState("");
   const [handoff, setHandoff] = useState<
-    null | { step: "links" } | { step: "main"; tabOpened: boolean }
+    null | { step: "links" } | { step: "main" }
   >(null);
   const [pendingSuggestions, setPendingSuggestions] = useState<
     ReturnType<typeof scanForLinks>
@@ -232,39 +232,18 @@ export function DraftEditor({
   };
 
   // Contribute pre-flight: scan for unlinked mentions of other guides. With
-  // matches, show the link-check step first; with none, go straight to GitHub.
+  // matches, show the link-check step first; with none, go straight to the
+  // GitHub handoff modal. The modal walks through fork → create → PR; nothing
+  // opens or clears until the writer follows the links themselves.
+  // Sidebar entries are automatic (category meta.json files end with "...").
   const handleContribute = () => {
     const found = scanForLinks(body);
     if (found.length > 0) {
       setPendingSuggestions(found);
       setHandoff({ step: "links" });
     } else {
-      proceedToHandoff(body);
+      setHandoff({ step: "main" });
     }
-  };
-
-  // Open the GitHub flow. The modal only appears when something is left to do
-  // here: the copy-paste fallback, edit mode, or staged images to upload.
-  // Sidebar entries are automatic (category meta.json files end with "...").
-  const proceedToHandoff = (currentBody: string) => {
-    if (mode === "new") {
-      const target = newFileUrl(
-        category,
-        effectiveSlug,
-        assembleMdx({ title, description, body: currentBody }),
-      );
-      if (target.prefilled) {
-        window.open(target.url, "_blank", "noopener");
-        if (stagedImages.size === 0) {
-          clearDraft(storageKey);
-          setHandoff(null);
-          return;
-        }
-        setHandoff({ step: "main", tabOpened: true });
-        return;
-      }
-    }
-    setHandoff({ step: "main", tabOpened: false });
   };
 
   // Applying the last pending suggestion continues to GitHub on its own.
@@ -275,7 +254,7 @@ export function DraftEditor({
     setBody(next);
     const remaining = scanForLinks(next);
     setPendingSuggestions(remaining);
-    if (remaining.length === 0) proceedToHandoff(next);
+    if (remaining.length === 0) setHandoff({ step: "main" });
   };
 
   const handlePreviewStatus = useCallback((status: PreviewStatus) => {
@@ -610,22 +589,18 @@ export function DraftEditor({
       {handoff !== null && (
         <Handoff
           step={handoff.step}
-          tabOpened={handoff.step === "main" ? handoff.tabOpened : false}
           suggestions={pendingSuggestions}
           onApplySuggestion={handleApplyPending}
-          onContinue={() => proceedToHandoff(body)}
+          onContinue={() => setHandoff({ step: "main" })}
           mode={mode}
           mdx={assembledMdx}
           category={category}
           slug={effectiveSlug}
           editPath={editPath}
           stagedImages={stagedImages}
-          onClose={() => {
-            // Closing the link-check step returns to editing. Closing the
-            // final step means the handoff happened, so the draft is done.
-            if (handoff.step === "main") clearDraft(storageKey);
-            setHandoff(null);
-          }}
+          // Never clear the draft here — the GitHub steps may still be in
+          // flight in another tab. The restore banner offers "start fresh".
+          onClose={() => setHandoff(null)}
         />
       )}
     </Shell>

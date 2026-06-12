@@ -1,4 +1,6 @@
-const REPO = "DivineSkins/divine-wiki";
+const REPO_OWNER = "DivineSkins";
+const REPO_NAME = "divine-wiki";
+const REPO = `${REPO_OWNER}/${REPO_NAME}`;
 const BRANCH = "main";
 /** Game segment under content/docs/en/ — the draft editor is LoL-only today. */
 const GAME = "lol";
@@ -12,6 +14,36 @@ const MAX_PREFILL_URL_BYTES = 6000;
 /** Repo-relative path to a guide's .mdx file. */
 export function contentPath(category: string, slug: string): string {
   return `content/docs/en/${GAME}/${category}/${slug}.mdx`;
+}
+
+/**
+ * "owner" is the contributor's GitHub username — URLs then point at their
+ * fork, where they have push access and GitHub honors the `?value=` prefill.
+ * Without it, URLs point at the upstream repo (maintainers only: GitHub's
+ * fork-and-edit interstitial on /new is unreliable and drops the prefill).
+ */
+function repoFor(owner?: string): string {
+  return owner ? `${owner}/${REPO_NAME}` : REPO;
+}
+
+/** GitHub's "create a new fork" page for the wiki repo. */
+export function forkUrl(): string {
+  return `https://github.com/${REPO}/fork`;
+}
+
+/**
+ * Cross-repo compare page: the fork's main branch against upstream main,
+ * with the PR form already expanded. Assumes the contributor committed to
+ * their fork's main (the default option in GitHub's commit dialog, and what
+ * the handoff modal tells them to do).
+ */
+export function comparePrUrl(owner: string): string {
+  return `https://github.com/${REPO}/compare/${BRANCH}...${encodeURIComponent(owner)}:${REPO_NAME}:${BRANCH}?expand=1`;
+}
+
+/** GitHub username rules: alphanumeric + inner hyphens, max 39 chars. */
+export function isValidGithubUsername(name: string): boolean {
+  return /^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$/.test(name);
 }
 
 export interface NewFileHandoff {
@@ -28,9 +60,10 @@ export function newFileUrl(
   category: string,
   slug: string,
   mdx: string,
+  owner?: string,
 ): NewFileHandoff {
   const filename = contentPath(category, slug);
-  const base = `https://github.com/${REPO}/new/${BRANCH}`;
+  const base = `https://github.com/${repoFor(owner)}/new/${BRANCH}`;
   const prefilledUrl =
     `${base}?filename=${encodeURIComponent(filename)}` +
     `&value=${encodeURIComponent(mdx)}`;
@@ -60,8 +93,8 @@ export function rawSourceUrl(path: string): string {
 }
 
 /** GitHub "upload files" URL pointed at the wiki-images folder. */
-export function uploadImagesUrl(): string {
-  return `https://github.com/${REPO}/upload/${BRANCH}/public/wiki-images`;
+export function uploadImagesUrl(owner?: string): string {
+  return `https://github.com/${repoFor(owner)}/upload/${BRANCH}/public/wiki-images`;
 }
 
 function byteLength(s: string): number {

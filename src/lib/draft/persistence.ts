@@ -39,3 +39,27 @@ export function clearDraft(key: string): void {
     // ignore
   }
 }
+
+/**
+ * The contributor's GitHub username, remembered across drafts so the
+ * handoff modal can deep-link to their fork without asking every time.
+ */
+const GITHUB_USER_KEY = "divine-draft:github-user";
+
+export function loadGithubUser(): string {
+  if (typeof window === "undefined") return "";
+  try {
+    return window.localStorage.getItem(GITHUB_USER_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+export function saveGithubUser(name: string): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(GITHUB_USER_KEY, name);
+  } catch {
+    // ignore
+  }
+}
