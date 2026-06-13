@@ -20,8 +20,11 @@ export async function GET(
   const page = source.getPage(slug, lang);
   if (!page) return notFound();
 
-  const logoSrc = await loadLogoDataUri();
   const origin = new URL(request.url).origin;
+  const [logoSrc, fonts] = await Promise.all([
+    loadLogoDataUri(origin),
+    loadFonts(origin),
+  ]);
 
   return new ImageResponse(
     <div
@@ -135,11 +138,13 @@ export async function GET(
           Divine Skins Wiki
         </span>
       </div>
-
-      {/* Reference origin so unused-var lints stay happy in case we want it later */}
-      <span style={{ display: "none" }}>{origin}</span>
     </div>,
     {
+      // Supply Manrope (the brand hero font) explicitly. The card's CSS asks
+      // for `fontFamily: "Manrope"`, but satori only uses fonts handed to it,
+      // so without this the title renders in next/og's bundled fallback font.
+      // `undefined` (no font loaded) falls back to that default. See loadFonts.
+      ...(fonts ? { fonts } : {}),
       // Worker responses aren't edge-cached by Cloudflare, but social crawlers
       // and browsers honor this, so repeat shares don't re-render the image.
       headers: {
@@ -150,19 +155,87 @@ export async function GET(
   );
 }
 
-let cachedLogo: string | null | undefined;
-
-async function loadLogoDataUri(): Promise<string | null> {
-  if (cachedLogo !== undefined) return cachedLogo;
+/**
+ * Reads a file from public/ at runtime. On Cloudflare Workers the Worker bundle
+ * has no filesystem access to public/ — static assets are served from the edge,
+ * not from the module's working directory — so a plain readFile throws there.
+ * Fetch the asset over HTTP from our own origin first (works in every runtime),
+ * and keep the filesystem read as a fallback for local tooling that renders
+ * without a live origin. `publicPath` is the asset's URL path (e.g.
+ * "/icon-192.png"); the filesystem fallback resolves it under public/.
+ */
+async function loadPublicAsset(
+  origin: string,
+  publicPath: string,
+): Promise<ArrayBuffer | null> {
+  try {
+    const res = await fetch(new URL(publicPath, origin));
+    if (res.ok) return await res.arrayBuffer();
+  } catch {
+    // Fall through to the filesystem read below.
+  }
   try {
     const buf = await readFile(
-      join(process.cwd(), "public", "brand", "logo.webp"),
+      join(process.cwd(), "public", ...publicPath.split("/").filter(Boolean)),
     );
-    cachedLogo = `data:image/webp;base64,${buf.toString("base64")}`;
+    // Return the exact bytes as an ArrayBuffer (avoid handing satori a view
+    // over Node's shared pooled buffer).
+    return buf.buffer.slice(
+      buf.byteOffset,
+      buf.byteOffset + buf.byteLength,
+    ) as ArrayBuffer;
   } catch {
-    cachedLogo = null;
+    return null;
   }
+}
+
+let cachedLogo: string | null | undefined;
+
+async function loadLogoDataUri(origin: string): Promise<string | null> {
+  if (cachedLogo !== undefined) return cachedLogo;
+  // Must be a PNG, not the WebP brand logo: the @vercel/og build that next/og
+  // bundles has no WebP dimension parser, so embedding a WebP throws
+  // "u2 is not iterable" and aborts the whole image. icon-192.png is the same
+  // mark and is plenty sharp for the 64px render. (This is why the logo was
+  // never the issue in prod — the failed readFile meant no <img> rendered at
+  // all, so the parser was never reached.)
+  const buf = await loadPublicAsset(origin, "/icon-192.png");
+  cachedLogo = buf
+    ? `data:image/png;base64,${Buffer.from(buf).toString("base64")}`
+    : null;
   return cachedLogo;
+}
+
+// Weights the card actually uses: 400 (description), 700 (footer), 800 (title).
+const FONT_WEIGHTS = [400, 700, 800] as const;
+
+type OgFont = {
+  name: string;
+  data: ArrayBuffer;
+  weight: (typeof FONT_WEIGHTS)[number];
+  style: "normal";
+};
+
+// `null` once resolved-but-empty, so we cache the "no fonts" outcome too.
+let cachedFonts: OgFont[] | null | undefined;
+
+async function loadFonts(origin: string): Promise<OgFont[] | undefined> {
+  if (cachedFonts !== undefined) return cachedFonts ?? undefined;
+  const loaded = await Promise.all(
+    FONT_WEIGHTS.map(async (weight) => {
+      const data = await loadPublicAsset(origin, `/fonts/Manrope-${weight}.ttf`);
+      return data
+        ? { name: "Manrope", data, weight, style: "normal" as const }
+        : null;
+    }),
+  );
+  const fonts = loaded.filter((font): font is OgFont => font !== null);
+  // If nothing loaded, return undefined rather than an empty array: an empty
+  // `fonts` array leaves satori with no typeface and throws, whereas omitting
+  // the option lets next/og fall back to its bundled default font (today's
+  // behavior). So the worst case is exactly what production renders now.
+  cachedFonts = fonts.length > 0 ? fonts : null;
+  return cachedFonts ?? undefined;
 }
 
 export function generateStaticParams() {
