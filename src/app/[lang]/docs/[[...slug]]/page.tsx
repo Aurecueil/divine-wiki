@@ -10,7 +10,8 @@ import { getMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import Link from "next/link";
-import { ogLanguageBlacklist } from "@/lib/i18n";
+import { i18n, ogLanguageBlacklist } from "@/lib/i18n";
+import { baseOpenGraph, baseTwitter, llmAlternateTypes } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { DocsLanding } from "@/components/home/docs-landing";
 import { PageCredits } from "@/components/page-credits";
@@ -128,18 +129,39 @@ export async function generateMetadata(
     "celestial launcher",
   ];
 
+  // hreflang: advertise only locales that actually have this page. Missing
+  // locales fall back to English at render time, so listing them would point
+  // Google at English content under a non-English URL. `canonical` is the
+  // resolved page's own URL, so en-fallback views consolidate to the en URL.
+  const languages: Record<string, string> = {};
+  for (const locale of i18n.languages) {
+    const localized = source.getPage(slug, locale);
+    if (localized) languages[locale] = localized.url;
+  }
+  const englishPage = source.getPage(slug, "en");
+  if (englishPage) languages["x-default"] = englishPage.url;
+
+  const alternates = {
+    canonical: page.url,
+    languages,
+    types: llmAlternateTypes,
+  };
+
   if (ogLanguageBlacklist.includes(params.lang))
     return {
       title: page.data.title,
       description: page.data.description,
       keywords: [...globalKeywords, ...pageKeywords],
+      alternates,
     };
 
   return {
     title: page.data.title,
     description: page.data.description,
     keywords: [...globalKeywords, ...pageKeywords],
+    alternates,
     openGraph: {
+      ...baseOpenGraph,
       images: [
         {
           url: imageUrl,
@@ -147,6 +169,10 @@ export async function generateMetadata(
           height: 630,
         },
       ],
+    },
+    twitter: {
+      ...baseTwitter,
+      images: [imageUrl],
     },
   };
 }

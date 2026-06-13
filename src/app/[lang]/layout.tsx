@@ -13,6 +13,7 @@ import {
 } from "next/font/google";
 import type { Metadata } from "next";
 import { baseUrl } from "@/lib/config";
+import { baseOpenGraph, baseTwitter, llmAlternateTypes } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import {
   ContributePickerProvider,
@@ -92,13 +93,10 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   alternates: {
-    types: {
-      "text/plain": [
-        { url: "/llms.txt", title: "LLM-friendly site index" },
-        { url: "/llms-full.txt", title: "LLM-friendly full documentation" },
-      ],
-    },
+    types: llmAlternateTypes,
   },
+  openGraph: baseOpenGraph,
+  twitter: baseTwitter,
 };
 
 const translations = Object.fromEntries(
