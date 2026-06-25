@@ -1,0 +1,128 @@
+---
+title: "Easy - Basic Sound Modding"
+description: "Beginner guide to making sound mods"
+category: "sounds"
+---
+
+**Required tools:**
+
+<ToolCard
+  name="Quartz"
+  href="https://github.com/RitoShark/Quartz"
+>
+  Download from GitHub.
+</ToolCard>
+
+**Helpful tools:**
+
+<ToolCard
+  name="Audacity"
+  href="https://www.audacityteam.org/download/"
+>
+  Audio editing software.
+</ToolCard>
+
+<ToolCard
+  name="yt-dlp"
+  href="https://github.com/yt-dlp/yt-dlp"
+>
+  Helpfull tool to download media from internet.
+</ToolCard>
+
+---
+
+### What You're Working With
+
+League of Legends stores its audio in a few file types you'll encounter repeatedly:
+
+- `.bnk` — a Wwise "SoundBank" that contains both audio data and/or logic/event hierarchy
+- `.wpk` — a Riot-specific format that stores only raw audio (no metadata)
+- `.wem` — the individual compressed audio format Wwise uses internally
+
+<Callout type="info" title="Don't use custom skins in Korea or China">
+  For **SFX** (abilities, impacts, UI sounds), you'll usually be editing an `audio.bnk` file.
+  
+  For **VO** (voice lines, announcer), you'll usually be editing an `audio.wpk` file.
+</Callout>
+---
+
+### Finding the Right Files
+
+You need three files to edit a character's sounds:
+
+| File | Example path |
+|---|---|
+| Audio (wpk or bnk) | `ASSETS/Sounds/Wwise2016/VO/en_US/Characters/Yone/Skins/Base/Yone_Base_vo_audio.wpk` |
+| Events bank | `ASSETS/Sounds/Wwise2016/VO/en_US/Characters/Yone/Skins/Base/Yone_Base_vo_events.bnk` |
+| Bin file | `data/characters/Yone/skins/skin0.bin` |
+
+You can load these files into Quartz directly or using one of pre-set options:
+
+- **From game** — Just Select a champion and their skin (left most option).
+- **From an existing mod** — If you're editing, sourcing or building on top of another mod, you can load the mod's folder instead (2nd left most option).
+
+<img src="/wiki-images/quartz-selection-2.png" alt="" />
+
+---
+
+### Step-by-Step: Replacing a Sound
+
+**1. Open the Sound Bank tab in Quartz.**
+
+<img src="/wiki-images/quartz-empty-2.png" alt="" />
+
+
+**2. Load your files on the LEFT side.**
+
+Click the left panel and point Quartz to your `.bin`, audio (`.bnk` or `.wpk`), and events (`.bnk`) files. Then hit **Parse**.
+
+This populates the left side with a list of all sounds in that bank.
+
+<img src="/wiki-images/quartz-2-2.png" alt="" />
+
+
+You can have multiple banks parsed and loaded on the left at the same time.
+
+**3. Add your replacement sounds on the RIGHT side.**
+
+The right panel is where you load the new audio you want to use. Quartz accepts:
+
+- `.wav`
+- `.wem`
+- `.ogg`
+- `.mp3`
+
+It will handle format conversion automatically — no need to manually convert to `.wem` before importing.
+
+You can also load another parsed League audio bank on the right side and pull sounds from it directly.
+
+<img src="/wiki-images/quartz-3-2.png" alt="" />
+
+
+**4. Drag to replace.**
+
+Drag a sound from the **right panel** onto the sound you want to replace in the **left panel**. The entry on the left will update to reflect the replacement.
+
+<img src="/wiki-images/quartz4.png" alt="Quartz Selection dot png" />
+
+**5. Save your edited bank.**
+
+Select your bank on the left panel, then click **"Save as BNK/WPK"** and save it somewhere in your mod folder.
+
+<img src="/wiki-images/quartz-save-2.png" alt="" />
+
+
+---
+
+### What to Include in Your Mod
+
+| Mod type | Files to include |
+|---|---|
+| SFX mod | `audio.bnk` only |
+| VO mod | `audio.wpk` **AND** `events.bnk` |
+
+For VO mods, the events bank is required because it defines which audio file plays for each in-game event (attack, death, joke, etc.). Without it, your new audio won't be triggered correctly.
+
+---
+
+guide by aurecueil

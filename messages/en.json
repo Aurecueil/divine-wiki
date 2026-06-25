@@ -83,6 +83,9 @@
     "assets-library": {
       "title": "Assets library"
     },
+	"sound": {
+      "title": "Sound Modding"
+    },
     "errors": {
       "title": "Errors & fixes"
     },

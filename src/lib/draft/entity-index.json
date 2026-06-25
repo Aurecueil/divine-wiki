@@ -126,6 +126,30 @@
     "url": "/docs/lol/maya/rigging-uvs"
   },
   {
+    "title": "3D Model Swap",
+    "slug": "3d-model-swap",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/3d-model-swap"
+  },
+  {
+    "title": "Blender",
+    "slug": "index",
+    "category": "sounds",
+    "url": "/docs/lol/sounds"
+  },
+  {
+    "title": "LoL Blender Plugin",
+    "slug": "lol-blender-plugin",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/lol-blender-plugin"
+  },
+  {
+    "title": "Material Atlas",
+    "slug": "material-atlas",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/material-atlas"
+  },
+  {
     "title": "Aventurine: League Tools",
     "slug": "aventurine",
     "category": "tools",
