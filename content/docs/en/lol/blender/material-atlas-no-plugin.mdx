@@ -1,0 +1,316 @@
+---
+title: "Material Atlas (No Plugin)"
+description: "This tutorial will explain how to do material atlases manually. No plugins needed."
+category: "blender"
+---
+
+<LevelPill level="intermediate" />
+
+<Callout type="info">
+  Before getting started there’s another guide on this topic that achieves the
+  same and faster via a plugin [here](material-atlas). Just in case you missed
+  it.
+</Callout>
+But if:
+
+- The plugin broke or has issues
+- You are too lazy to update blender to version 5.xxx (my case lol)
+- You are a plugin racist.
+
+Then let's continue.
+
+First things first, what is a material atlas? Well, ideally we want to have the 3D model textures packed into a single image so we can import them into league and sometimes when you download a model, its material view looks like this:
+
+<figure>
+  <img
+    id="img-1"
+    src="/wiki-images/j3-img-1.png"
+    alt="List of materials of an imported 3D model"
+  />
+  <figcaption>Image 1. List of materials of an imported 3D model</figcaption>
+</figure>
+
+As you can see there’s a long list of materials and each one is tied to an image containing a portion of your model’s textures. We will narrow it down to just 1.
+
+To do so we need to follow these steps:
+
+1. UV unwrap your model into a new blank image **using a new uv map**.
+2. Setup the baking
+3. Bake the textures into our blank image.
+4. Final touch and cleanup
+
+# Step 1
+
+<Callout>
+This is probably the hardest part of the process so once finished you will be 80% done.
+
+For the sake of this tutorial we will skip the part of “good UVs” and we will let blender do it all automaticaly for us, but bear in mind that it will always be better if you manually create seams for your model and unwrap them properly.
+
+</Callout>
+First of all, create a new uv map to hold our new changes, to do so, go to the right side panel view in blender and click in the green triangle as shown here:
+<figure>
+  <img
+    id="img-2"
+    src="/wiki-images/j3-img-2.png"
+    alt="New UVMap creation"
+  />
+  <figcaption>Image 2. New UVMap creation</figcaption>
+</figure>
+
+You can name the new uv map as you wish, you should now have something like
+
+<figure>
+  <img
+    id="img-3"
+    src="/wiki-images/j3-img-3.png"
+    alt="New UVMap creation outcome"
+  />
+  <figcaption>Image 3. New UVMap created</figcaption>
+</figure>
+
+<Callout type="warning">
+  Notice how we have it highlighted in blue but the camera icon is disabled as
+  opposed to the default UVMap that has it enabled, **this is important**. This
+  tells blender “Show the UVs of UVMap in the render but any action or
+  modification is saved onto the one in blue.
+</Callout>
+Next up is going to <b>UV Editing</b> tab
+<figure>
+  <img id="img-4" src="/wiki-images/j3-img-4.png" alt="UV Editing view" />
+  <figcaption>Image 4. UV Editing view</figcaption>
+</figure>
+The left panel is where you edit your UVs, By default, a random image from one
+of the materials of the model will be selected but what we want is to create a
+new image from scratch. I usually set the images to be 2K → 2048 x 2048.
+<figure>
+  <img
+    id="img-5"
+    src="/wiki-images/j3-img-5.png"
+    alt="Creating a new image for our texture"
+  />
+  <figcaption>Image 5. New texture image</figcaption>
+</figure>
+Make sure once the image is created that you are actually editing said image and
+also that you are using your newly created UV map:
+<figure>
+  <img id="img-6" src="/wiki-images/j3-img-6.png" alt="New image outcome" />
+  <figcaption>Image 6. Image creation outcome</figcaption>
+</figure>
+We have now to re-arrange the UVs so they are nice and tidy, right now if you
+select a part of the model you will see a mess:
+<figure>
+  <img id="img-7" src="/wiki-images/j3-img-7.png" alt="UV mess" />
+  <figcaption>Image 7. UV mess</figcaption>
+</figure>
+Fear not, the process is mostly automatic.
+
+Select the whole 3D model pressing “a” then press “u” and select “Smart UV Project”, copy my settings or play with them as desired if needed.
+
+<figure>
+  <img
+    id="img-8"
+    src="/wiki-images/j3-img-8.png"
+    alt="UV mess fix in progress"
+  />
+  <figcaption>Image 8. Fixnig the UV mess</figcaption>
+</figure>
+You should now have something like
+<figure>
+  <img
+    id="img-9"
+    src="/wiki-images/j3-img-9.png"
+    alt="UV smart project output"
+  />
+  <figcaption>Image 9. UV smart project output</figcaption>
+</figure>
+<Callout type="warning">
+  This might seem “good” but you need to be careful since automatic UV
+  unwrapping is not perfect and it may be some overlappings.
+</Callout>
+For example, if we zoom in in the bottom-left corner we can see that hasn’t been
+unwrapped so nicely
+<figure>
+  <img
+    id="img-10"
+    src="/wiki-images/j3-img-10.png"
+    alt="UV smart project possible issues"
+  />
+  <figcaption>Image 10. UV smart project possible issues</figcaption>
+</figure>
+How do we fix it? Easy. First, select the affected part, to do so, you need to
+activate the little icon on the top-left corner of the below image. Also make
+sure to be on “face selection" (the underlined icon)
+<figure>
+  <img
+    id="img-11"
+    src="/wiki-images/j3-img-11.png"
+    alt="UV smart project possible issues"
+  />
+  <figcaption>Image 11. Activate UV reverse bidirectional selection</figcaption>
+</figure>
+Now all UV island will be visible on the left side, you can now go to the
+problematic area, with the mouse hover a face from there and hit L to select
+only that island, you will see that it is highlighted also in the 3d model.
+Let’s unwrap this one alone, after selecting it, hit U but this time choose
+“Unwrap minimum stretch”.
+<figure>
+  <img
+    id="img-12"
+    src="/wiki-images/j3-img-12.png"
+    alt="Unwrap minimum stretch of selected area output"
+  />
+  <figcaption>
+    Image 12. Unwrap minimum stretch of selected area output
+  </figcaption>
+</figure>
+You could resize it by hand until it fits in the blank spaces of our image, or
+you could let blender do it for you! For the latter, press “A” again to select
+everything once more. Then go to UV menu and choose pack islands
+<figure>
+  <img
+    id="img-13"
+    src="/wiki-images/j3-img-13.png"
+    alt="Packing islands again"
+  />
+  <figcaption>Image 13. Packing islands again</figcaption>
+</figure>
+<Callout>
+  Try to use the same spacing value as in <a href="#img-8">image 8</a>
+</Callout>
+<figure>
+  <img
+    id="img-14"
+    src="/wiki-images/j3-img-14.png"
+    alt="Packing islands again (2)"
+  />
+  <figcaption>Image 14. Packing islands again (2)</figcaption>
+</figure>
+Your UVs are now ready. Let’s get the baking done now.
+
+# Step 2
+
+The baking tells blender to transfer certain parts of how the 3D model is looking now into another place, usually a texture image.
+
+For this step we’re going to use the <b>shading</b> tab from the tab menuat the top of the blender window.
+
+In the left side, make sure to open our previously cretaed “one_texture” image which should be black yet.
+
+<figure>
+  <img id="img-15" src="/wiki-images/j3-img-15.png" alt="Shading tab" />
+  <figcaption>Image 15. Shading tab</figcaption>
+</figure>
+
+Now comes the boring part. go to the right side panel, the material view, and select the first one. Then, in the node panel (the boxes right below our 3D model) press F3 and type “Image texture”
+
+<figure>
+  <img
+    id="img-16"
+    src="/wiki-images/j3-img-16.png"
+    alt="Creating a new image texture"
+  />
+  <figcaption>Image 16. Creating a new image texture</figcaption>
+</figure>
+Now select our “one_texture” image from the “picture” icon. You should have
+somethign like this
+<figure>
+  <img
+    id="img-17"
+    src="/wiki-images/j3-img-17.png"
+    alt="Creating a new image texture output"
+  />
+  <figcaption>Image 17. Creating a new image texture output</figcaption>
+</figure>
+By the way, I like to change the color space to sRGB, the rest leave it as is.
+
+Notice how you have a white highlight around the border of the box? That means it is selected, <b>this is also important for the baking</b>.
+
+Once done, hit ctrl+c to copy the node, and go through each one of the remaining materials in the right side panel list and hit ctrl+v to paste it.
+
+If you did it correctly, you will now have one box like the <a href="#img-17">Image 17</a> per material, make sure they are all selected.
+
+# Step 3
+
+Go to the render tab in the right side panel
+
+<figure>
+  <img id="img-18" src="/wiki-images/j3-img-18.png" alt="Render tab" />
+  <figcaption>Image 18. Creating a new image texture output</figcaption>
+</figure>
+<Callout type="warning">
+  Change the render engine from EEVEE to Cycles since EEVEE doesn’t support
+  baking.
+</Callout>
+
+Enter the “Bake” submenu there and select these settings:
+
+<figure>
+  <img
+    id="img-19"
+    src="/wiki-images/j3-img-19.png"
+    alt="Bake submenu settings"
+  />
+  <figcaption>Image 19. Bake submenu settings</figcaption>
+</figure>
+A diffuse map bakes the color of the texture, we disable direct and indirect
+since we dont want any lighting interfering.
+
+<b>Before hitting “Bake” button, make sure of this</b>
+
+1. The selected UV map is the one you created new.
+2. There’s a new selected image texture node for each material.
+3. Your 3D model is also selected
+
+<figure>
+  <img id="img-20" src="/wiki-images/j3-img-20.png" alt="Check bake settings" />
+  <figcaption>Image 20. Check bake settings</figcaption>
+</figure>
+
+Once ready, hit bake.
+
+If you followed the tutorial correctly, you will have now something like this
+
+<figure>
+  <img id="img-21" src="/wiki-images/j3-img-21.png" alt="Bake result" />
+  <figcaption>Image 21. Bake result</figcaption>
+</figure>
+
+<Callout type="danger" title="Careful">
+  Save the image locally or you will lose it.
+</Callout>
+
+<figure>
+  <img id="img-22" src="/wiki-images/j3-img-22.png" alt="Save result" />
+  <figcaption>Image 22. Save result</figcaption>
+</figure>
+
+# Step 4
+
+Time to clean up and test the result.
+
+Go back to layout view (at the top menu bar), your 3D model should look good by now, let’s mess it up a bit. First, let’s create a new material to hold our new texture.
+
+<figure>
+  <img id="img-23" src="/wiki-images/j3-img-23.png" alt="Create new material" />
+  <figcaption>Image 23. Create new material</figcaption>
+</figure>
+Give it a name, like “one_texture” and switch to the shading layout then put the
+nodes like in the following image.
+<figure>
+  <img id="img-24" src="/wiki-images/j3-img-24.png" alt="Setting nodes" />
+  <figcaption>Image 24. Setting nodes</figcaption>
+</figure>
+Go back to the layout tab and delete all materials except the one created by us.
+You will end up with a mess like this
+<figure>
+  <img id="img-25" src="/wiki-images/j3-img-25.png" alt="Material doomsday" />
+  <figcaption>Image 25. Materialggedon</figcaption>
+</figure>
+Do you recall the UV map menu back in <a href="#img-2">image 2</a>? swap the
+camera icon so that your new uv map is the one having it active and see the
+magic.
+
+<Callout type="success">
+  Now the final touch, remove the old “UVMap” and rename the new one to the same
+  “UVMap” name. I’m not sure but I read somewhere that the UVMap name is
+  important for the skins to work in league.
+</Callout>
