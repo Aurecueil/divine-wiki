@@ -126,28 +126,28 @@
     "url": "/docs/lol/maya/rigging-uvs"
   },
   {
-    "title": "3D Model Swap",
-    "slug": "3d-model-swap",
-    "category": "sounds",
-    "url": "/docs/lol/sounds/3d-model-swap"
-  },
-  {
-    "title": "Blender",
+    "title": "Sound Modding",
     "slug": "index",
     "category": "sounds",
     "url": "/docs/lol/sounds"
   },
   {
-    "title": "LoL Blender Plugin",
-    "slug": "lol-blender-plugin",
+    "title": "Easy - Basic Sound Modding",
+    "slug": "sound-easy",
     "category": "sounds",
-    "url": "/docs/lol/sounds/lol-blender-plugin"
+    "url": "/docs/lol/sounds/sound-easy"
   },
   {
-    "title": "Material Atlas",
-    "slug": "material-atlas",
+    "title": "Advanced - Reading and editing events.bnk",
+    "slug": "sound-hard",
     "category": "sounds",
-    "url": "/docs/lol/sounds/material-atlas"
+    "url": "/docs/lol/sounds/sound-hard"
+  },
+  {
+    "title": "Intermediate - Custom Banks",
+    "slug": "sound-medium",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/sound-medium"
   },
   {
     "title": "Aventurine: League Tools",
