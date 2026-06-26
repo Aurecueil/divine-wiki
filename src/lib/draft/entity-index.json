@@ -126,6 +126,30 @@
     "url": "/docs/lol/maya/rigging-uvs"
   },
   {
+    "title": "Sound Modding",
+    "slug": "index",
+    "category": "sounds",
+    "url": "/docs/lol/sounds"
+  },
+  {
+    "title": "Easy - Basic Sound Modding",
+    "slug": "sound-easy",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/sound-easy"
+  },
+  {
+    "title": "Advanced - Reading and editing events.bnk",
+    "slug": "sound-hard",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/sound-hard"
+  },
+  {
+    "title": "Intermediate - Custom Banks",
+    "slug": "sound-medium",
+    "category": "sounds",
+    "url": "/docs/lol/sounds/sound-medium"
+  },
+  {
     "title": "Aventurine: League Tools",
     "slug": "aventurine",
     "category": "tools",
