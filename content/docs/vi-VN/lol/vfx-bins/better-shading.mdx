@@ -1,0 +1,161 @@
+---
+title: "Cách làm skin đẹp hơn dễ dàng với shading"
+description: "Cho model custom của bạn ánh sáng và bóng đổ thật chỉ với vài cú click trong Ruby. Không cần code, không cần Blender, chỉ một material."
+category: "vfx-bins"
+---
+
+<LevelPill level="beginner" />
+
+Phần lớn model custom trông **phẳng** trong game. Texture thì ổn, nhưng không có
+ánh sáng hay bóng đổ nào trên đó, nên model trông như bị dán lên tướng.
+
+Một material shading sẽ sửa được điều này. Với [Ruby](/docs/lol/tools/modding-apps/ruby)
+chỉ mất vài cú click, và bạn thấy kết quả trực tiếp trước khi mở game.
+
+## Trước và sau
+
+**Illumi Zoldyck trên Locke**
+
+<img
+  src="/wiki-images/better-shading-illumi.webp"
+  alt="Skin Illumi Zoldyck Locke trước và sau khi thêm material shading"
+/>
+
+**Rem trên Zaahen**
+
+<img
+  src="/wiki-images/better-shading-rem.webp"
+  alt="Skin Rem Zaahen trước và sau khi thêm material shading"
+/>
+
+Cùng model, cùng texture. Chỉ material thay đổi. Hãy nhìn cánh tay, tay áo và
+váy: giờ chúng đã có mặt sáng và mặt tối.
+
+Trong hướng dẫn này chúng ta dùng **AnimeShade**, preset shading của Dazashu
+làm cho Ruby. Nó dùng được cho mọi skin, không chỉ nhân vật anime.
+
+---
+
+## 1. Cài preset
+
+1. Tải **[AnimeShade](/wiki-files/AnimeShade.rubyshader)**.
+2. Trong Ruby, bấm biểu tượng **Browse League / TFT skins** (biểu tượng cuối
+   cùng trên thanh trên cùng) và mở tab **Shaders**.
+3. Bấm **Install a pack** và chọn file vừa tải.
+
+<img
+  src="/wiki-images/better-shading-install.webp"
+  alt="Tab Shaders của Ruby với nút Install a pack được đánh dấu"
+/>
+
+Bạn chỉ cần làm việc này một lần. Preset sẽ ở lại trong Ruby cho mọi skin sau
+này.
+
+## 2. Mở skin của bạn
+
+1. Bấm **Open BIN** (biểu tượng thư mục) và chọn `skin0.bin` của skin trong thư
+   mục mod **đã giải nén**.
+2. Bấm **BIN editor** ở góc dưới bên phải và chuyển sang tab **Material**.
+
+<img
+  src="/wiki-images/better-shading-open.webp"
+  alt="Ruby với nút Open BIN và BIN editor được đánh dấu"
+/>
+
+## 3. Tạo material
+
+Bấm **More** ở cuối BIN editor, rồi:
+
+1. **New Material**.
+2. Sau đó, khi material đã được tạo, **Make name unique**. Việc này tránh xung
+   đột với các mod khác dùng cùng preset.
+
+<img
+  src="/wiki-images/better-shading-new-material.webp"
+  alt="Menu More với New Material và Make name unique được đánh dấu"
+/>
+
+Trong cửa sổ **New material**, chọn preset **AnimeShade** và bấm **Create**.
+
+<img
+  src="/wiki-images/better-shading-preset.webp"
+  alt="Cửa sổ New material với preset AnimeShade được đánh dấu"
+  width={600}
+/>
+
+Ruby tự liên kết shader với skin của bạn. Giờ bấm **More → Make name unique**.
+
+## 4. Đặt texture
+
+Trong **Textures**, dán đường dẫn texture của model vào **Diffuse_Texture** và
+bấm **Set**. Đó là cùng file `.tex` mà skin của bạn đang dùng.
+
+<img
+  src="/wiki-images/better-shading-texture.webp"
+  alt="Ô Diffuse_Texture trên material mới"
+/>
+
+## 5. Áp dụng lên model
+
+Mở tab **Mesh** ở cuối BIN editor. Trong **Base material**, bấm **Apply**.
+Material sẽ được áp dụng cho toàn bộ model.
+
+<img
+  src="/wiki-images/better-shading-mesh.webp"
+  alt="Tab Mesh với nút Apply trong Base material được đánh dấu"
+/>
+
+Preview cập nhật ngay lập tức. Bấm **Save**.
+
+<img
+  src="/wiki-images/better-shading-result.webp"
+  alt="Illumi với material shading đã áp dụng trong Ruby"
+/>
+
+<Callout type="info" title="Chỉ muốn dùng cho một số phần?">
+  Mỗi dòng trong **Mesh assignment** là một phần của model. Bấm **Apply** ở một
+  dòng để chỉ shading phần đó. Bỏ qua những phần đã dùng material đặc biệt của
+  Riot, như biến hình hoặc hiệu ứng tan biến khi chết: thay nó sẽ làm mất hiệu
+  ứng đó.
+</Callout>
+
+## 6. Xuất WAD của shader
+
+Quay lại tab **Shaders** và bấm **Export WAD** trên AnimeShade. Việc này lưu một
+file `ShaderCache.dx11.wad.client`.
+
+<img
+  src="/wiki-images/better-shading-export.webp"
+  alt="Nút Export WAD trên preset AnimeShade"
+/>
+
+Đặt nó trong mod **cạnh** WAD của tướng, trong **cùng một layer**:
+
+```plaintext
+content/base/
+    Locke.wad.client/
+    ShaderCache.dx11.wad.client/
+```
+
+<Callout type="danger" title="Luôn gửi kèm cả hai">
+  Skin của bạn giờ đang dùng shader. Nếu bạn bỏ quên
+  `ShaderCache.dx11.wad.client`, **game sẽ crash khi tải**. Preview của Ruby sẽ
+  không cảnh báo bạn.
+</Callout>
+
+Vậy là xong. Đóng gói mod và tận hưởng diện mạo mới trong game.
+
+---
+
+## Tùy chỉnh theo ý bạn
+
+Mọi thiết lập nằm trong **Parameters** ở tab Material và cập nhật trực tiếp:
+
+| Thiết lập | Tác dụng |
+| --- | --- |
+| `Saturation` | Độ đậm màu. |
+| `Shading_Threshold` / `Shading_Softness` | Bóng bắt đầu từ đâu và viền bóng mềm đến mức nào. |
+| `Shadow_Color` | Tông màu của mặt tối. |
+| `Rim_Intensity` | Ánh sáng mềm quanh viền model. |
+| `Specular_Intensity` | Độ bóng ở vùng phản chiếu. |
+| `Base_Color` | Nhân toàn bộ texture. Giảm xuống để làm skin tối hơn. |

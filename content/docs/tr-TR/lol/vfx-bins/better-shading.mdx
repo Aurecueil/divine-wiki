@@ -1,0 +1,161 @@
+---
+title: "Skinini Gölgelendirmeyle Kolayca Daha İyi Göstermek"
+description: "Ruby ile birkaç tıklamada özel modeline gerçek ışık ve gölge ver. Kod yok, Blender yok, sadece bir materyal."
+category: "vfx-bins"
+---
+
+<LevelPill level="beginner" />
+
+Çoğu özel model oyunda **düz** görünür. Doku iyidir ama üzerinde ışık ya da
+gölge yoktur, bu yüzden model şampiyonun üstüne yapıştırılmış gibi durur.
+
+Gölgelendirme materyali bunu düzeltir. [Ruby](/docs/lol/tools/modding-apps/ruby)
+ile birkaç tıklama sürer ve sonucu oyunu açmadan önce canlı olarak görürsün.
+
+## Önce ve sonra
+
+**Locke üzerinde Illumi Zoldyck**
+
+<img
+  src="/wiki-images/better-shading-illumi.webp"
+  alt="Illumi Zoldyck Locke skini, gölgelendirme materyali eklenmeden önce ve sonra"
+/>
+
+**Zaahen üzerinde Rem**
+
+<img
+  src="/wiki-images/better-shading-rem.webp"
+  alt="Rem Zaahen skini, gölgelendirme materyali eklenmeden önce ve sonra"
+/>
+
+Aynı model, aynı doku. Sadece materyal değişti. Kollara, yenlere ve eteğe bak:
+artık aydınlık ve gölgeli bir tarafları var.
+
+Bu rehberde Dazashu'nun Ruby için yaptığı gölgelendirme preseti **AnimeShade**'i
+kullanıyoruz. Sadece anime karakterlerinde değil, her skinde çalışır.
+
+---
+
+## 1. Preseti yükle
+
+1. **[AnimeShade](/wiki-files/AnimeShade.rubyshader)**'i indir.
+2. Ruby'de **Browse League / TFT skins** simgesine (üst çubuktaki son simge)
+   tıkla ve **Shaders** sekmesini aç.
+3. **Install a pack**'e tıkla ve indirdiğin dosyayı seç.
+
+<img
+  src="/wiki-images/better-shading-install.webp"
+  alt="Install a pack butonu vurgulanmış Ruby Shaders sekmesi"
+/>
+
+Bunu sadece bir kez yaparsın. Preset gelecekteki tüm skinlerin için Ruby'de
+kalır.
+
+## 2. Skinini aç
+
+1. **Open BIN**'e (klasör simgesi) tıkla ve **çıkarılmış** mod klasöründen
+   skininin `skin0.bin` dosyasını seç.
+2. Sağ alt köşedeki **BIN editor**'e tıkla ve **Material** sekmesine geç.
+
+<img
+  src="/wiki-images/better-shading-open.webp"
+  alt="Open BIN ve BIN editor butonları vurgulanmış Ruby"
+/>
+
+## 3. Materyali oluştur
+
+BIN editor'ün altındaki **More**'a tıkla, sonra:
+
+1. **New Material**.
+2. Daha sonra, oluşturulduktan sonra, **Make name unique**. Böylece aynı preseti
+   kullanan diğer modlarla çakışmaz.
+
+<img
+  src="/wiki-images/better-shading-new-material.webp"
+  alt="New Material ve Make name unique vurgulanmış More menüsü"
+/>
+
+**New material** penceresinde preset olarak **AnimeShade**'i seç ve **Create**'e
+tıkla.
+
+<img
+  src="/wiki-images/better-shading-preset.webp"
+  alt="AnimeShade preseti vurgulanmış New material penceresi"
+  width={600}
+/>
+
+Ruby shader'ı skinine kendisi bağlar. Şimdi **More → Make name unique**'e tıkla.
+
+## 4. Dokunu ayarla
+
+**Textures** altında modelinin doku yolunu **Diffuse_Texture**'a yapıştır ve
+**Set**'e tıkla. Skininin zaten kullandığı `.tex` dosyasıdır.
+
+<img
+  src="/wiki-images/better-shading-texture.webp"
+  alt="Yeni materyaldeki Diffuse_Texture yuvası"
+/>
+
+## 5. Modeline uygula
+
+BIN editor'ün altındaki **Mesh** sekmesini aç. **Base material** altında
+**Apply**'a tıkla. Bu, materyali tüm modeline uygular.
+
+<img
+  src="/wiki-images/better-shading-mesh.webp"
+  alt="Base material altındaki Apply butonu vurgulanmış Mesh sekmesi"
+/>
+
+Önizleme hemen güncellenir. **Save**'e tıkla.
+
+<img
+  src="/wiki-images/better-shading-result.webp"
+  alt="Ruby'de gölgelendirme materyali uygulanmış Illumi"
+/>
+
+<Callout type="info" title="Sadece bazı parçalarda mı istiyorsun?">
+  **Mesh assignment** altındaki her satır modelin bir parçasıdır. Sadece o
+  parçayı gölgelendirmek için satırdaki **Apply**'a tıkla. Dönüşüm veya ölüm
+  dissolve'u gibi özel bir Riot materyali kullanan parçaları atla: onu
+  değiştirmek o efekti kaldırır.
+</Callout>
+
+## 6. Shader WAD'ını dışa aktar
+
+**Shaders** sekmesine geri dön ve AnimeShade'deki **Export WAD**'a tıkla. Bu
+bir `ShaderCache.dx11.wad.client` kaydeder.
+
+<img
+  src="/wiki-images/better-shading-export.webp"
+  alt="AnimeShade presetindeki Export WAD butonu"
+/>
+
+Bunu modunda şampiyon WAD'ının **yanına**, **aynı katmana** koy:
+
+```plaintext
+content/base/
+    Locke.wad.client/
+    ShaderCache.dx11.wad.client/
+```
+
+<Callout type="danger" title="Her zaman ikisini birlikte gönder">
+  Skinin artık shader'ı kullanıyor. `ShaderCache.dx11.wad.client`'ı dışarıda
+  bırakırsan **oyun yüklenirken çöker**. Ruby'nin önizlemesi seni uyarmaz.
+</Callout>
+
+Bu kadar. Modunu paketle ve oyunda yeni görünümün tadını çıkar.
+
+---
+
+## Kendine göre ayarla
+
+Tüm ayarlar Material sekmesindeki **Parameters** altındadır ve canlı güncellenir:
+
+| Ayar | Ne yapar |
+| --- | --- |
+| `Saturation` | Renk yoğunluğu. |
+| `Shading_Threshold` / `Shading_Softness` | Gölgenin nerede başladığı ve kenarının ne kadar yumuşak olduğu. |
+| `Shadow_Color` | Gölgeli tarafın tonu. |
+| `Rim_Intensity` | Modelin kenarlarındaki yumuşak ışık. |
+| `Specular_Intensity` | Parlamalardaki parlaklık. |
+| `Base_Color` | Tüm dokuyu çarpar. Skini koyulaştırmak için düşür. |

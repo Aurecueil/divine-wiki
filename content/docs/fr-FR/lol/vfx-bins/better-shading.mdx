@@ -1,0 +1,166 @@
+---
+title: "Comment rendre ton skin plus beau facilement avec du shading"
+description: "Donne une vraie lumière et de vraies ombres à ton modèle custom en quelques clics avec Ruby. Pas de code, pas de Blender, juste un material."
+category: "vfx-bins"
+---
+
+<LevelPill level="beginner" />
+
+La plupart des modèles custom ont l'air **plats** en jeu. La texture est
+bonne, mais il n'y a ni lumière ni ombre dessus, donc ils ont l'air collés sur
+le champion.
+
+Un material de shading règle ça. Avec [Ruby](/docs/lol/tools/modding-apps/ruby),
+ça prend quelques clics, et tu vois le résultat en direct avant même d'ouvrir le jeu.
+
+## Avant et après
+
+**Illumi Zoldyck sur Locke**
+
+<img
+  src="/wiki-images/better-shading-illumi.webp"
+  alt="Skin Illumi Zoldyck Locke avant et après l'ajout d'un material de shading"
+/>
+
+**Rem sur Zaahen**
+
+<img
+  src="/wiki-images/better-shading-rem.webp"
+  alt="Skin Rem Zaahen avant et après l'ajout d'un material de shading"
+/>
+
+Même modèle, même texture. Seul le material a changé. Regarde les bras, les
+manches et la jupe : ils ont enfin un côté éclairé et un côté ombré.
+
+Dans ce guide, on utilise **AnimeShade**, le preset de shading de Dazashu fait
+pour Ruby. Il marche sur n'importe quel skin, pas seulement les personnages
+d'anime.
+
+---
+
+## 1. Installer le preset
+
+1. Télécharge **[AnimeShade](/wiki-files/AnimeShade.rubyshader)**.
+2. Dans Ruby, clique sur l'icône **Browse League / TFT skins** (la dernière
+   icône de la barre du haut) et ouvre l'onglet **Shaders**.
+3. Clique sur **Install a pack** et choisis le fichier téléchargé.
+
+<img
+  src="/wiki-images/better-shading-install.webp"
+  alt="Onglet Shaders de Ruby avec le bouton Install a pack en surbrillance"
+/>
+
+Tu ne le fais qu'une fois. Le preset reste dans Ruby pour tous tes futurs skins.
+
+## 2. Ouvrir ton skin
+
+1. Clique sur **Open BIN** (l'icône dossier) et choisis le `skin0.bin` de ton
+   skin dans ton dossier de mod **extrait**.
+2. Clique sur **BIN editor** en bas à droite et va dans l'onglet **Material**.
+
+<img
+  src="/wiki-images/better-shading-open.webp"
+  alt="Ruby avec les boutons Open BIN et BIN editor en surbrillance"
+/>
+
+## 3. Créer le material
+
+Clique sur **More** en bas du BIN editor, puis :
+
+1. **New Material**.
+2. Plus tard, une fois créé, **Make name unique**. Ça évite les conflits avec
+   d'autres mods qui utilisent le même preset.
+
+<img
+  src="/wiki-images/better-shading-new-material.webp"
+  alt="Le menu More avec New Material et Make name unique en surbrillance"
+/>
+
+Dans la fenêtre **New material**, choisis le preset **AnimeShade** et clique
+sur **Create**.
+
+<img
+  src="/wiki-images/better-shading-preset.webp"
+  alt="La fenêtre New material avec le preset AnimeShade en surbrillance"
+  width={600}
+/>
+
+Ruby relie le shader à ton skin tout seul. Clique maintenant sur **More → Make
+name unique**.
+
+## 4. Mettre ta texture
+
+Sous **Textures**, colle le chemin de la texture de ton modèle dans
+**Diffuse_Texture** et clique sur **Set**. C'est le même `.tex` que ton skin
+utilise déjà.
+
+<img
+  src="/wiki-images/better-shading-texture.webp"
+  alt="Le slot Diffuse_Texture du nouveau material"
+/>
+
+## 5. L'appliquer sur ton modèle
+
+Ouvre l'onglet **Mesh** en bas du BIN editor. Sous **Base material**, clique
+sur **Apply**. Le material s'applique à tout ton modèle.
+
+<img
+  src="/wiki-images/better-shading-mesh.webp"
+  alt="L'onglet Mesh avec le bouton Apply sous Base material en surbrillance"
+/>
+
+La preview se met à jour tout de suite. Clique sur **Save**.
+
+<img
+  src="/wiki-images/better-shading-result.webp"
+  alt="Illumi avec le material de shading appliqué dans Ruby"
+/>
+
+<Callout type="info" title="Tu ne le veux que sur certaines parties ?">
+  Chaque ligne sous **Mesh assignment** est une partie du modèle. Clique sur
+  **Apply** sur une ligne pour ne shader que cette partie. Évite les parties
+  qui utilisent déjà un material spécial de Riot, comme une transformation ou
+  un dissolve de mort : le remplacer supprime cet effet.
+</Callout>
+
+## 6. Exporter le WAD du shader
+
+Retourne dans l'onglet **Shaders** et clique sur **Export WAD** sur AnimeShade.
+Ça enregistre un `ShaderCache.dx11.wad.client`.
+
+<img
+  src="/wiki-images/better-shading-export.webp"
+  alt="Le bouton Export WAD du preset AnimeShade"
+/>
+
+Mets-le dans ton mod **à côté** du WAD de ton champion, dans la **même couche** :
+
+```plaintext
+content/base/
+    Locke.wad.client/
+    ShaderCache.dx11.wad.client/
+```
+
+<Callout type="danger" title="Livre toujours les deux">
+  Ton skin utilise maintenant le shader. Si tu oublies
+  `ShaderCache.dx11.wad.client`, **le jeu crashe au chargement**. La preview
+  de Ruby ne te préviendra pas.
+</Callout>
+
+C'est tout. Package ton mod et profite du nouveau rendu en jeu.
+
+---
+
+## Personnalise-le
+
+Chaque réglage se trouve sous **Parameters** dans l'onglet Material et se met à
+jour en direct :
+
+| Réglage | Ce qu'il fait |
+| --- | --- |
+| `Saturation` | Intensité des couleurs. |
+| `Shading_Threshold` / `Shading_Softness` | Où commence l'ombre et la douceur de son bord. |
+| `Shadow_Color` | Teinte du côté ombré. |
+| `Rim_Intensity` | Lumière douce autour des bords du modèle. |
+| `Specular_Intensity` | Brillance sur les reflets. |
+| `Base_Color` | Multiplie toute la texture. Baisse-le pour assombrir le skin. |
