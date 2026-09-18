@@ -1,19 +1,52 @@
 ---
 title: "Sound Modding"
-description: "Guides for editing sounds in league of legends"
+description: "Guides for editing and creating custom sounds in League of Legends"
 category: "sounds"
 ---
 
-## Guides
+## What do you want to do?
 
-<ToolCard name="Easy" href="/docs/lol/sounds/sound-easy">
-  Basic Sound Modding
-</ToolCard>
+### Replace existing sounds (1:1 swap)
+* **Goal:** Swap an ability SFX, auto-attack, or voice line without changing when or how it triggers.
+* **Method:** Open the bank in Quartz, drag and drop new audio (`.wav`, `.mp3`, `.ogg`, or `.wem`), and save.
+* **Guide:** [Easy - Basic Sound Modding](/docs/lol/sounds/sound-easy)
 
-<ToolCard name="Intermediate" href="/docs/lol/sounds/sound-medium">
-  Custom Banks
-</ToolCard>
+---
 
-<ToolCard name="Advanced" href="/docs/lol/sounds/sound-hard">
-  Reading and editing events.bnk
-</ToolCard>
+### Add more sound variations (editing .bin)
+* **Goal:** Expand sound pools (e.g., 10 attack lines instead of 3).
+* **Method:** Build new containers in Wwise and load your custom bank first via the champion's `.bin` file.
+* **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
+
+---
+
+### Add more sounds without editing .bin files
+* **Goal:** Expand sound variations or inject audio directly into stock banks without touching champion `.bin` files.
+* **Method:** Reconstruct or patch the official `events.bnk` structure directly.
+* **Guide:** [Advanced - Reading and Editing events.bnk](/docs/lol/sounds/sound-hard)
+* > **Warning:** This is exceptionally difficult. It requires deep hex editing, and proper understanding of banks.
+
+---
+
+### Change sound properties (volume, pitch, attenuation)
+
+* **Recreate the event in Wwise** *(Recommended)*
+  * **Pros:** Stable across game patches; full control over mixing curves.
+  * **Cons:** Slower initial setup; requires manually matching element IDs.
+  * **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
+
+* **Patch the official `events.bnk`** *(Quick adjustments)*
+  * **Pros:** Fast for one-off tweaks without opening Wwise.
+  * **Cons:** Fragile; byte offsets shift whenever Riot updates the bank.
+  * **Guide:** [Advanced - Reading and Editing events.bnk](/docs/lol/sounds/sound-hard)
+
+---
+
+### Add custom logic, switches, or announcer packs
+* **Goal:** Multi-state music, interactive skin audio, custom buses, or full announcer overhauls.
+* **Method:** Author custom hierarchies, switches, and states directly in Wwise.
+* **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
+
+---
+
+*Guide by aurecueil*
