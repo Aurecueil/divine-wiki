@@ -1,19 +1,60 @@
 ---
 title: "Ses Modlama"
-description: "League of Legends'ta sesleri düzenleme rehberleri"
+description: "League of Legends'ta sesleri düzenleme ve özel ses yapma rehberleri"
 category: "sounds"
 ---
 
-## Rehberler
+## Ne yapmak istiyorsun?
 
-<ToolCard name="Kolay" href="/docs/lol/sounds/sound-easy">
-  Temel Ses Modlama
-</ToolCard>
+### Mevcut sesleri değiştirmek (1:1 değişim)
 
-<ToolCard name="Orta" href="/docs/lol/sounds/sound-medium">
-  Özel Bank'lar
-</ToolCard>
+- **Hedef:** Bir yetenek SFX'ini, temel saldırıyı ya da bir replik sesini, ne zaman ve nasıl tetiklendiğini değiştirmeden değiştirmek.
+- **Yöntem:** Bank'ı Quartz'da aç, yeni sesi (`.wav`, `.mp3`, `.ogg` ya da `.wem`) sürükleyip bırak ve kaydet.
+- **Rehber:** [Kolay - Temel Ses Modlama](/docs/lol/sounds/sound-easy)
 
-<ToolCard name="İleri" href="/docs/lol/sounds/sound-hard">
-  events.bnk okuma ve düzenleme
-</ToolCard>
+---
+
+### Daha fazla ses varyasyonu eklemek (.bin düzenleyerek)
+
+- **Hedef:** Ses havuzlarını büyütmek (örneğin 3 yerine 10 saldırı repliği).
+- **Yöntem:** Wwise'da yeni container'lar kur ve özel bank'ını şampiyonun `.bin` dosyası üzerinden ilk sırada yükle.
+- **Rehber:** [Orta - Özel Bank'lar](/docs/lol/sounds/sound-medium)
+
+---
+
+### .bin dosyalarını düzenlemeden daha fazla ses eklemek
+
+- **Hedef:** Şampiyonun `.bin` dosyalarına dokunmadan ses varyasyonlarını artırmak ya da sesi doğrudan orijinal bank'lara enjekte etmek.
+- **Yöntem:** Resmi `events.bnk` yapısını doğrudan yeniden kurmak ya da yamalamak.
+- **Rehber:** [İleri - events.bnk okuma ve düzenleme](/docs/lol/sounds/sound-hard)
+
+<Callout type="warning">
+  Bu çok zor. Hex düzenleme ve bank'ların nasıl yapılandığını iyi anlamayı
+  gerektirir.
+</Callout>
+
+---
+
+### Ses özelliklerini değiştirmek (ses seviyesi, pitch, attenuation)
+
+- **Event'i Wwise'da yeniden oluşturmak** _(önerilen)_
+  - **Artıları:** Oyun yamaları arasında stabil. Miks eğrileri üzerinde tam kontrol.
+  - **Eksileri:** İlk kurulum daha yavaş. Element ID'lerini elle eşleştirmen gerekir.
+  - **Rehber:** [Orta - Özel Bank'lar](/docs/lol/sounds/sound-medium)
+
+- **Resmi `events.bnk`'yi yamalamak** _(hızlı ayarlar)_
+  - **Artıları:** Wwise'ı açmadan tek seferlik ayarlar için hızlı.
+  - **Eksileri:** Kırılgan. Riot bank'ı her güncellediğinde byte offset'leri kayar.
+  - **Rehber:** [İleri - events.bnk okuma ve düzenleme](/docs/lol/sounds/sound-hard)
+
+---
+
+### Özel mantık, switch'ler ya da spiker paketleri eklemek
+
+- **Hedef:** Çok durumlu müzik, etkileşimli skin sesleri, özel bus'lar ya da spikerin tamamen yenilenmesi.
+- **Yöntem:** Özel hiyerarşileri, switch'leri ve state'leri doğrudan Wwise'da kurmak.
+- **Rehber:** [Orta - Özel Bank'lar](/docs/lol/sounds/sound-medium)
+
+---
+
+_Rehber: aurecueil_
