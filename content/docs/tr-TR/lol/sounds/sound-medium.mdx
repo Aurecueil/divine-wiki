@@ -62,14 +62,18 @@ League sesi iki ayrı dosyaya böler:
 
 Wwise'ın hiyerarşisi düzdür. Her elementin bir `ID`'si ve bir `ParentID`'si vardır. Bu sayede, tüm ağacı değiştirmeden League'in hiyerarşisindeki mevcut ebeveynlere kendiliğinden bağlanan yeni elementler enjekte edebilirsin.
 
-### Medya ve Event'leri Ayrı Tut
+### Özel Bank'larda Ses ve Event'leri Ayırmak
 
-SoundBank oluştururken Wwise yapıyı ve medyayı tek bir bank'ta toplayabilir. Ayırmak isteğe bağlı, ama event'leri ve medyayı birleştirirsen diğer modder'lar Quartz'da seslerini inceleyemez ya da değiştiremez. Ayırmak için şunları oluştur:
+SoundBank oluştururken Wwise yapıyı ve medyayı tek bir bank'ta toplayabilir. İstersen sesi event'lerden ve yapıdan ayırabilirsin. Ayırmak, başkalarının özel bank'larını daha sonra [Quartz](/docs/lol/sounds/sound-easy) ile düzenleyebilmesini sağlar.
 
-1. Yapıyı ve event tanımlarını tutan bir `_events.bnk`.
-2. Sadece medyayı tutan bir `_audio.bnk` (ya da `.wpk`).
+Ayırırsan şunları oluştur:
 
-Ayırmıyorsan her şeyi `_events.bnk`'ye koy.
+1. Sadece medyayı tutan bir `_audio.bnk`.
+2. Yapıyı ve event tanımlarını tutan bir `_events.bnk`.
+
+Ayırmazsan şunu oluştur:
+
+1. Medyayı, yapıyı ve event tanımlarını tutan bir `_events.bnk`. Kısacası her şeyi.
 
 ---
 
@@ -105,8 +109,8 @@ Wwise'da seviyeleri dengelerken **Voice Volume yerine Make-up Gain'i ayarla**. V
 Riot tekrar eden aksiyonlara doğal duyulsunlar diye genelde küçük, rastgele bir pitch değişimi uygular (örneğin Sett'in W varyasyonları ya da Ölümsüzün Kavrayışı tetiklenmeleri):
 
 1. Container'ını ya da ses objeni seç.
-2. **Pitch**'in yanındaki rastgele (zar) simgesine tıkla.
-3. `-50` ile `+50` cent arasında bir aralık ayarla.
+2. **Pitch**'in sağındaki simgeye sağ tıkla.
+3. Bir aralık ayarla, örneğin `-100` ile `+100` cent arası.
 
 ---
 

@@ -6,46 +6,35 @@ category: "sounds"
 
 ## Qu'est-ce que tu veux faire ?
 
-### Remplacer des sons existants (swap 1:1)
+### Remplacer des sons existants
 
-- **Objectif :** Remplacer un SFX de compétence, une auto-attaque ou une réplique sans changer quand ni comment elle se déclenche.
-- **Méthode :** Ouvre la banque dans Quartz, glisse-dépose ton nouvel audio (`.wav`, `.mp3`, `.ogg` ou `.wem`) et sauvegarde.
+- **Objectif :** Remplacer un SFX de compétence, une auto-attaque ou une réplique.
+- **Méthode :** Édite `audio.bnk` ou `audio.wpk` avec [Quartz](/docs/lol/tools/modding-apps/quartz).
 - **Guide :** [Easy - Modding audio basique](/docs/lol/sounds/sound-easy)
 
 ---
 
-### Ajouter plus de variations de sons (en éditant le .bin)
+### Ajouter une action ou un son en plus à un event
 
-- **Objectif :** Agrandir les pools de sons (par exemple 10 répliques d'attaque au lieu de 3).
-- **Méthode :** Crée de nouveaux containers dans Wwise et charge ta banque custom en premier via le fichier `.bin` du champion.
+- **Objectif :** Jouer un son en plus d'un son existant.
+- **Méthode :** Redirige l'event dans le `.bin` vers un event proxy custom, puis fais jouer à cet event proxy l'event officiel plus ton action en plus.
 - **Guide :** [Intermediate - Banques de sons custom](/docs/lol/sounds/sound-medium)
 
 ---
 
-### Ajouter plus de sons sans éditer les fichiers .bin
+### Ajouter plus de sons ou changer d'autres comportements
 
 - **Objectif :** Agrandir les variations de sons ou injecter de l'audio directement dans les banques d'origine sans toucher aux fichiers `.bin` du champion.
-- **Méthode :** Reconstruire ou patcher directement la structure du `events.bnk` officiel.
-- **Guide :** [Advanced - Lire et éditer events.bnk](/docs/lol/sounds/sound-hard)
+- **Recréer l'event dans Wwise** _(recommandé)_
+  - **Méthode :** Remplace l'event existant par ton propre event.
+  - **Guide :** [Intermediate - Banques de sons custom](/docs/lol/sounds/sound-medium)
+- **Patcher le `events.bnk` officiel** _(ajustements rapides)_
+  - **Méthode :** Déplace les éléments existants ou modifie leurs propriétés.
+  - **Guide :** [Advanced - Lire et éditer events.bnk](/docs/lol/sounds/sound-hard)
 
 <Callout type="warning">
-  C'est très difficile. Ça demande de l'édition hexadécimale et une bonne
-  compréhension de la structure des banques.
+  Ce genre d'édition binaire peut être très difficile.
 </Callout>
-
----
-
-### Changer les propriétés d'un son (volume, pitch, atténuation)
-
-- **Recréer l'event dans Wwise** _(recommandé)_
-  - **Avantages :** Stable d'un patch à l'autre. Contrôle total sur les courbes de mixage.
-  - **Inconvénients :** Mise en place plus lente. Tu dois faire correspondre les IDs des éléments à la main.
-  - **Guide :** [Intermediate - Banques de sons custom](/docs/lol/sounds/sound-medium)
-
-- **Patcher le `events.bnk` officiel** _(ajustements rapides)_
-  - **Avantages :** Rapide pour des retouches ponctuelles sans ouvrir Wwise.
-  - **Inconvénients :** Fragile. Les offsets d'octets bougent à chaque fois que Riot met à jour la banque.
-  - **Guide :** [Advanced - Lire et éditer events.bnk](/docs/lol/sounds/sound-hard)
 
 ---
 

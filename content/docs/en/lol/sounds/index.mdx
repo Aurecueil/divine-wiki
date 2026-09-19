@@ -9,31 +9,31 @@ category: "sounds"
 ### Replace existing sounds
 
 - **Goal:** Replace an ability SFX, auto-attack, or voice line.
-- **Method:** Edit `audio.bnk` or `audio.wpk` with [Quartz.](https://wiki.divineskins.gg/en/docs/lol/tools/modding-apps/quartz)
+- **Method:** Edit `audio.bnk` or `audio.wpk` with [Quartz](/docs/lol/tools/modding-apps/quartz).
 - **Guide:** [Easy - Basic Sound Modding](/docs/lol/sounds/sound-easy)
 
 ---
 
-### Add extra action/sound to an event
+### Add an extra action or sound to an event
 
-- **Goal:** Add extra sound to play alongside existing sound.
-- **Method:** Re-route event in bins to custom proxy event, make proxy event that plays official events + additional action.
+- **Goal:** Play an extra sound alongside an existing one.
+- **Method:** Reroute the event in the `.bin` to a custom proxy event, then make that proxy event play the official event plus your extra action.
 - **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
 
 ---
 
-### Add more sounds or other behaviour alterations 
+### Add more sounds or change other behavior
 
 - **Goal:** Expand sound variations or inject audio directly into stock banks without touching champion `.bin` files.
 - **Recreate the event in Wwise** _(recommended)_
-  - **Method:** Override existing event with a own event.
+  - **Method:** Override the existing event with your own event.
   - **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
 - **Patch the official `events.bnk`** _(quick adjustments)_
-  - **Method:** Castle existing elements around or edit their properties.
+  - **Method:** Move existing elements around or edit their properties.
   - **Guide:** [Advanced - Reading and Editing events.bnk](/docs/lol/sounds/sound-hard)
 
 <Callout type="warning">
-  Binary editing in this case can be Very difficult.
+  Binary editing like this can be very difficult.
 </Callout>
 
 ---

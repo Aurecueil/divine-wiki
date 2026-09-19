@@ -63,14 +63,18 @@ Liên Minh chia âm thanh thành hai file riêng:
 
 Hierarchy của Wwise là dạng phẳng. Mỗi element có một `ID` và một `ParentID`. Nhờ vậy bạn có thể chèn element mới tự gắn vào các element cha có sẵn trong hierarchy của Liên Minh, mà không phải thay cả cây.
 
-### Để media và event tách riêng
+### Tách âm thanh và event trong bank tùy chỉnh
 
-Khi tạo SoundBank, Wwise có thể gộp cấu trúc và media vào một bank. Tách riêng là không bắt buộc, nhưng nếu bạn gộp event và media lại, các modder khác sẽ không thể xem hay thay âm thanh của bạn trong Quartz. Để tách, hãy tạo:
+Khi tạo SoundBank, Wwise có thể gộp cấu trúc và media vào một bank. Bạn có thể tùy chọn tách âm thanh khỏi event và cấu trúc. Tách ra giúp người khác sau này sửa được bank tùy chỉnh của bạn bằng [Quartz](/docs/lol/sounds/sound-easy).
 
-1. Một file `_events.bnk` chứa cấu trúc và định nghĩa event.
-2. Một file `_audio.bnk` (hoặc `.wpk`) chỉ chứa media.
+Nếu tách, hãy tạo:
 
-Nếu không tách, hãy cho tất cả vào `_events.bnk`.
+1. Một file `_audio.bnk` chỉ chứa media.
+2. Một file `_events.bnk` chứa cấu trúc và định nghĩa event.
+
+Nếu không tách, hãy tạo:
+
+1. Một file `_events.bnk` chứa media, cấu trúc và định nghĩa event. Nói gọn là tất cả.
 
 ---
 
@@ -106,8 +110,8 @@ Khi cân mức âm lượng trong Wwise, **hãy chỉnh Make-up Gain thay vì Vo
 Riot thường thêm một chút thay đổi pitch ngẫu nhiên cho các hành động lặp lại để nghe tự nhiên hơn (ví dụ các biến thể W của Sett hoặc lúc Quyền Năng Bất Diệt kích hoạt):
 
 1. Chọn container hoặc sound object của bạn.
-2. Bấm biểu tượng ngẫu nhiên (con xúc xắc) cạnh **Pitch**.
-3. Đặt khoảng từ `-50` đến `+50` cent.
+2. Bấm chuột phải vào biểu tượng bên phải **Pitch**.
+3. Đặt một khoảng, ví dụ từ `-100` đến `+100` cent.
 
 ---
 

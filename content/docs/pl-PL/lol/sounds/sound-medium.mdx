@@ -63,14 +63,18 @@ League dzieli audio na dwa osobne pliki:
 
 Hierarchia Wwise jest płaska. Każdy element ma `ID` i `ParentID`. Dzięki temu można wstrzyknąć nowe elementy, które same podepną się pod istniejących rodziców w hierarchii League, bez podmieniania całego drzewa.
 
-### Trzymaj media i eventy osobno
+### Rozdzielanie audio i eventów we własnych bankach
 
-Przy generowaniu SoundBanków Wwise może spakować strukturę i media do jednego banku. Rozdzielenie jest opcjonalne, ale jeśli połączysz eventy z mediami, inni modderzy nie będą mogli podejrzeć ani podmienić twoich dźwięków w Quartzu. Żeby rozdzielić, wygeneruj:
+Przy generowaniu SoundBanków Wwise może spakować strukturę i media do jednego banku. Opcjonalnie możesz oddzielić audio od eventów i struktury. Rozdzielenie pozwala innym później edytować twoje banki w [Quartzu](/docs/lol/sounds/sound-easy).
 
-1. `_events.bnk` ze strukturą i definicjami eventów.
-2. `_audio.bnk` (albo `.wpk`) z samymi mediami.
+Jeśli rozdzielasz, wygeneruj:
 
-Jeśli nie rozdzielasz, wrzuć wszystko do `_events.bnk`.
+1. `_audio.bnk` z samymi mediami.
+2. `_events.bnk` ze strukturą i definicjami eventów.
+
+Jeśli nie rozdzielasz, wygeneruj:
+
+1. `_events.bnk` z mediami, strukturą i definicjami eventów. Krótko mówiąc, ze wszystkim.
 
 ---
 
@@ -106,8 +110,8 @@ Przy balansowaniu poziomów w Wwise **zmieniaj Make-up Gain zamiast Voice Volume
 Riot często dodaje lekką losową zmianę pitchu do powtarzalnych akcji, żeby brzmiały naturalnie (na przykład warianty W Setta albo procy Uścisku Nieśmiertelnego):
 
 1. Zaznacz swój kontener albo obiekt dźwiękowy.
-2. Kliknij ikonę losowania (kostkę) obok **Pitch**.
-3. Ustaw zakres od `-50` do `+50` centów.
+2. Kliknij prawym przyciskiem ikonę po prawej stronie **Pitch**.
+3. Ustaw zakres, na przykład od `-100` do `+100` centów.
 
 ---
 

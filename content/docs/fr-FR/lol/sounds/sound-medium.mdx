@@ -64,14 +64,18 @@ League sépare l'audio en deux fichiers distincts :
 
 La hiérarchie de Wwise est plate. Chaque élément a un `ID` et un `ParentID`. Ça permet d'injecter de nouveaux éléments qui se rattachent à des parents existants dans la hiérarchie de League, sans remplacer tout l'arbre.
 
-### Garde les médias et les events séparés
+### Séparer l'audio et les events dans tes banques custom
 
-Quand tu génères des SoundBanks, Wwise peut regrouper la structure et les médias dans une seule banque. Séparer est optionnel, mais si tu fusionnes events et médias, les autres moddeurs ne pourront pas inspecter ni remplacer tes sons dans Quartz. Pour séparer, génère :
+Quand tu génères des SoundBanks, Wwise peut regrouper la structure et les médias dans une seule banque. Tu peux, si tu veux, séparer l'audio des events et de la structure. Séparer permet aux autres d'éditer plus tard tes banques custom avec [Quartz](/docs/lol/sounds/sound-easy).
 
-1. Un `_events.bnk` qui contient la structure et les définitions d'events.
-2. Un `_audio.bnk` (ou `.wpk`) qui contient uniquement les médias.
+Si tu sépares, génère :
 
-Si tu ne sépares pas, mets tout dans `_events.bnk`.
+1. Un `_audio.bnk` qui contient uniquement les médias.
+2. Un `_events.bnk` qui contient la structure et les définitions d'events.
+
+Si tu ne sépares pas, génère :
+
+1. Un `_events.bnk` qui contient les médias, la structure et les définitions d'events. Bref, tout.
 
 ---
 
@@ -107,8 +111,8 @@ Pour équilibrer les niveaux dans Wwise, **ajuste le Make-up Gain plutôt que le
 Riot applique souvent un léger changement de pitch aléatoire aux actions répétitives pour qu'elles sonnent naturelles (par exemple les variantes du W de Sett ou les procs de Poigne de l'immortel) :
 
 1. Sélectionne ton container ou ton objet sonore.
-2. Clique sur l'icône aléatoire (le dé) à côté de **Pitch**.
-3. Règle une plage entre `-50` et `+50` cents.
+2. Fais un clic droit sur l'icône à droite de **Pitch**.
+3. Règle une plage, par exemple de `-100` à `+100` cents.
 
 ---
 

@@ -63,14 +63,18 @@ O League divide o áudio em dois arquivos separados:
 
 A hierarquia do Wwise é plana. Cada elemento tem um `ID` e um `ParentID`. Isso permite injetar novos elementos que se ligam a pais já existentes na hierarquia do League, sem substituir a árvore inteira.
 
-### Mantenha mídia e eventos separados
+### Separando áudio e eventos nos bancos personalizados
 
-Na hora de gerar os SoundBanks, o Wwise pode juntar estrutura e mídia em um único banco. Separar é opcional, mas se você juntar eventos e mídia, outros modders não vão conseguir inspecionar nem substituir seus sons no Quartz. Para separar, gere:
+Na hora de gerar os SoundBanks, o Wwise pode juntar estrutura e mídia em um único banco. Se quiser, você pode separar o áudio dos eventos e da estrutura. Separar permite que outras pessoas editem seus bancos personalizados depois com o [Quartz](/docs/lol/sounds/sound-easy).
 
-1. Um `_events.bnk` com a estrutura e as definições de eventos.
-2. Um `_audio.bnk` (ou `.wpk`) só com a mídia.
+Se for separar, gere:
 
-Se não for separar, coloque tudo no `_events.bnk`.
+1. Um `_audio.bnk` só com a mídia.
+2. Um `_events.bnk` com a estrutura e as definições de eventos.
+
+Se não for separar, gere:
+
+1. Um `_events.bnk` com a mídia, a estrutura e as definições de eventos. Resumindo, tudo.
 
 ---
 
@@ -106,8 +110,8 @@ Na hora de equilibrar os níveis no Wwise, **ajuste o Make-up Gain em vez do Voi
 A Riot costuma aplicar uma pequena variação aleatória de pitch em ações repetitivas para que soem naturais (por exemplo, as variações do W do Sett ou os procs de Aperto dos Mortos-Vivos):
 
 1. Selecione seu container ou objeto de som.
-2. Clique no ícone de aleatório (o dado) ao lado de **Pitch**.
-3. Defina um intervalo entre `-50` e `+50` cents.
+2. Clique com o botão direito no ícone à direita de **Pitch**.
+3. Defina um intervalo, por exemplo de `-100` a `+100` cents.
 
 ---
 

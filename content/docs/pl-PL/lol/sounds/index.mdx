@@ -6,46 +6,35 @@ category: "sounds"
 
 ## Co chcesz zrobić?
 
-### Podmienić istniejące dźwięki (zamiana 1:1)
+### Podmienić istniejące dźwięki
 
-- **Cel:** Podmienić SFX umiejętności, auto-atak albo kwestię głosową bez zmiany tego, kiedy i jak się odpala.
-- **Sposób:** Otwórz bank w Quartzu, przeciągnij nowe audio (`.wav`, `.mp3`, `.ogg` albo `.wem`) i zapisz.
+- **Cel:** Podmienić SFX umiejętności, auto-atak albo kwestię głosową.
+- **Sposób:** Edytuj `audio.bnk` albo `audio.wpk` w [Quartzu](/docs/lol/tools/modding-apps/quartz).
 - **Poradnik:** [Easy - Podstawy moddingu dźwięku](/docs/lol/sounds/sound-easy)
 
 ---
 
-### Dodać więcej wariantów dźwięku (edycja .bin)
+### Dodać dodatkową akcję albo dźwięk do eventu
 
-- **Cel:** Powiększyć pule dźwięków (na przykład 10 kwestii przy ataku zamiast 3).
-- **Sposób:** Zbuduj nowe kontenery w Wwise i załaduj swój bank jako pierwszy przez plik `.bin` championa.
+- **Cel:** Odtworzyć dodatkowy dźwięk razem z istniejącym.
+- **Sposób:** Przekieruj event w `.bin` na własny event proxy, a potem ustaw ten event proxy tak, żeby odtwarzał oficjalny event plus twoją dodatkową akcję.
 - **Poradnik:** [Intermediate - Własne banki](/docs/lol/sounds/sound-medium)
 
 ---
 
-### Dodać więcej dźwięków bez edycji plików .bin
+### Dodać więcej dźwięków albo zmienić inne zachowanie
 
 - **Cel:** Powiększyć liczbę wariantów albo wstrzyknąć audio prosto do oryginalnych banków, bez ruszania plików `.bin` championa.
-- **Sposób:** Odbudować albo spatchować bezpośrednio strukturę oficjalnego `events.bnk`.
-- **Poradnik:** [Advanced - Odczyt i edycja events.bnk](/docs/lol/sounds/sound-hard)
+- **Odtworzyć event w Wwise** _(zalecane)_
+  - **Sposób:** Nadpisz istniejący event własnym eventem.
+  - **Poradnik:** [Intermediate - Własne banki](/docs/lol/sounds/sound-medium)
+- **Spatchować oficjalny `events.bnk`** _(szybkie poprawki)_
+  - **Sposób:** Przestaw istniejące elementy albo zmień ich właściwości.
+  - **Poradnik:** [Advanced - Odczyt i edycja events.bnk](/docs/lol/sounds/sound-hard)
 
 <Callout type="warning">
-  To jest bardzo trudne. Wymaga edycji w hex edytorze i dobrego zrozumienia
-  tego, jak zbudowane są banki.
+  Taka edycja binarna może być bardzo trudna.
 </Callout>
-
----
-
-### Zmienić właściwości dźwięku (głośność, pitch, tłumienie)
-
-- **Odtworzyć event w Wwise** _(zalecane)_
-  - **Plusy:** Stabilne między patchami. Pełna kontrola nad krzywymi miksu.
-  - **Minusy:** Wolniejsza konfiguracja na start. ID elementów musisz dopasować ręcznie.
-  - **Poradnik:** [Intermediate - Własne banki](/docs/lol/sounds/sound-medium)
-
-- **Spatchować oficjalny `events.bnk`** _(szybkie poprawki)_
-  - **Plusy:** Szybkie przy jednorazowych poprawkach, bez otwierania Wwise.
-  - **Minusy:** Kruche. Offsety bajtów przesuwają się przy każdej aktualizacji banku przez Riot.
-  - **Poradnik:** [Advanced - Odczyt i edycja events.bnk](/docs/lol/sounds/sound-hard)
 
 ---
 

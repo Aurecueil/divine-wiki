@@ -6,45 +6,35 @@ category: "sounds"
 
 ## Bạn muốn làm gì?
 
-### Thay âm thanh có sẵn (đổi 1:1)
+### Thay âm thanh có sẵn
 
-- **Mục tiêu:** Thay SFX của một kỹ năng, đòn đánh thường hoặc một câu thoại mà không đổi thời điểm hay cách nó được kích hoạt.
-- **Cách làm:** Mở bank trong Quartz, kéo thả âm thanh mới (`.wav`, `.mp3`, `.ogg` hoặc `.wem`) vào rồi lưu.
+- **Mục tiêu:** Thay SFX của một kỹ năng, đòn đánh thường hoặc một câu thoại.
+- **Cách làm:** Sửa `audio.bnk` hoặc `audio.wpk` bằng [Quartz](/docs/lol/tools/modding-apps/quartz).
 - **Hướng dẫn:** [Dễ - Mod âm thanh cơ bản](/docs/lol/sounds/sound-easy)
 
 ---
 
-### Thêm nhiều biến thể âm thanh hơn (sửa file .bin)
+### Thêm action hoặc âm thanh phụ vào một event
 
-- **Mục tiêu:** Mở rộng pool âm thanh (ví dụ 10 câu thoại khi đánh thay vì 3).
-- **Cách làm:** Tạo container mới trong Wwise và cho bank tùy chỉnh của bạn load trước qua file `.bin` của tướng.
+- **Mục tiêu:** Phát thêm một âm thanh cùng lúc với âm thanh có sẵn.
+- **Cách làm:** Chuyển hướng event trong `.bin` sang một event proxy tùy chỉnh, rồi cho event proxy đó phát event chính thức cộng thêm action của bạn.
 - **Hướng dẫn:** [Trung bình - Bank tùy chỉnh](/docs/lol/sounds/sound-medium)
 
 ---
 
-### Thêm âm thanh mà không sửa file .bin
+### Thêm âm thanh hoặc thay đổi hành vi khác
 
 - **Mục tiêu:** Mở rộng biến thể âm thanh hoặc chèn âm thanh thẳng vào bank gốc mà không đụng tới file `.bin` của tướng.
-- **Cách làm:** Dựng lại hoặc patch trực tiếp cấu trúc của file `events.bnk` chính thức.
-- **Hướng dẫn:** [Khó - Đọc và chỉnh sửa events.bnk](/docs/lol/sounds/sound-hard)
+- **Dựng lại event trong Wwise** _(khuyên dùng)_
+  - **Cách làm:** Override event có sẵn bằng event của riêng bạn.
+  - **Hướng dẫn:** [Trung bình - Bank tùy chỉnh](/docs/lol/sounds/sound-medium)
+- **Patch file `events.bnk` chính thức** _(chỉnh nhanh)_
+  - **Cách làm:** Sắp xếp lại các element có sẵn hoặc sửa thuộc tính của chúng.
+  - **Hướng dẫn:** [Khó - Đọc và chỉnh sửa events.bnk](/docs/lol/sounds/sound-hard)
 
 <Callout type="warning">
-  Việc này rất khó. Bạn cần sửa hex và hiểu rõ cấu trúc của bank.
+  Kiểu chỉnh sửa nhị phân này có thể rất khó.
 </Callout>
-
----
-
-### Đổi thuộc tính âm thanh (âm lượng, pitch, attenuation)
-
-- **Dựng lại event trong Wwise** _(khuyên dùng)_
-  - **Ưu điểm:** Ổn định qua các bản cập nhật game. Toàn quyền điều chỉnh các đường cong mix.
-  - **Nhược điểm:** Thiết lập ban đầu chậm hơn. Bạn phải tự khớp ID của các element.
-  - **Hướng dẫn:** [Trung bình - Bank tùy chỉnh](/docs/lol/sounds/sound-medium)
-
-- **Patch file `events.bnk` chính thức** _(chỉnh nhanh)_
-  - **Ưu điểm:** Nhanh cho những chỉnh sửa nhỏ lẻ mà không cần mở Wwise.
-  - **Nhược điểm:** Dễ hỏng. Offset byte bị lệch mỗi khi Riot cập nhật bank.
-  - **Hướng dẫn:** [Khó - Đọc và chỉnh sửa events.bnk](/docs/lol/sounds/sound-hard)
 
 ---
 
