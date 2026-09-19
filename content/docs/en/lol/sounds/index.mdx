@@ -6,46 +6,35 @@ category: "sounds"
 
 ## What do you want to do?
 
-### Replace existing sounds (1:1 swap)
+### Replace existing sounds
 
-- **Goal:** Swap an ability SFX, auto-attack, or voice line without changing when or how it triggers.
-- **Method:** Open the bank in Quartz, drag and drop new audio (`.wav`, `.mp3`, `.ogg`, or `.wem`), and save.
+- **Goal:** Replace an ability SFX, auto-attack, or voice line.
+- **Method:** Edit `audio.bnk` or `audio.wpk` with [Quartz.](https://wiki.divineskins.gg/en/docs/lol/tools/modding-apps/quartz)
 - **Guide:** [Easy - Basic Sound Modding](/docs/lol/sounds/sound-easy)
 
 ---
 
-### Add more sound variations (editing .bin)
+### Add extra action/sound to an event
 
-- **Goal:** Expand sound pools (for example, 10 attack lines instead of 3).
-- **Method:** Build new containers in Wwise and load your custom bank first via the champion's `.bin` file.
+- **Goal:** Add extra sound to play alongside existing sound.
+- **Method:** Re-route event in bins to custom proxy event, make proxy event that plays official events + additional action.
 - **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
 
 ---
 
-### Add more sounds without editing .bin files
+### Add more sounds or other behaviour alterations 
 
 - **Goal:** Expand sound variations or inject audio directly into stock banks without touching champion `.bin` files.
-- **Method:** Rebuild or patch the official `events.bnk` structure directly.
-- **Guide:** [Advanced - Reading and Editing events.bnk](/docs/lol/sounds/sound-hard)
+- **Recreate the event in Wwise** _(recommended)_
+  - **Method:** Override existing event with a own event.
+  - **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
+- **Patch the official `events.bnk`** _(quick adjustments)_
+  - **Method:** Castle existing elements around or edit their properties.
+  - **Guide:** [Advanced - Reading and Editing events.bnk](/docs/lol/sounds/sound-hard)
 
 <Callout type="warning">
-  This is very difficult. It requires hex editing and a solid understanding of
-  how banks are structured.
+  Binary editing in this case can be Very difficult.
 </Callout>
-
----
-
-### Change sound properties (volume, pitch, attenuation)
-
-- **Recreate the event in Wwise** _(recommended)_
-  - **Pros:** Stable across game patches. Full control over mixing curves.
-  - **Cons:** Slower initial setup. You have to match element IDs by hand.
-  - **Guide:** [Intermediate - Custom Banks](/docs/lol/sounds/sound-medium)
-
-- **Patch the official `events.bnk`** _(quick adjustments)_
-  - **Pros:** Fast for one-off tweaks without opening Wwise.
-  - **Cons:** Fragile. Byte offsets shift whenever Riot updates the bank.
-  - **Guide:** [Advanced - Reading and Editing events.bnk](/docs/lol/sounds/sound-hard)
 
 ---
 
